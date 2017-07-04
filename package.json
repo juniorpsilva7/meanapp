@@ -9,8 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.6.7",
     "ejs": "^2.5.1",
     "express": "^4.15.2",
-    "express-load": "^1.1.16"
+    "express-load": "^1.1.16",
+    "method-override": "^2.1.3"
   }
 }
