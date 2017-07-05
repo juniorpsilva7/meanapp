@@ -24,5 +24,13 @@ module.exports = function(){
         loja ? res.json(loja) : res.status(404).send('Loja não encontrada');
     };
 
+    controller.removeLoja = function(req, res){
+        var idLoja = req.params.id;
+        lojas = lojas.filter(function(loja){
+            return loja._id != idLoja;
+        });
+        res.status(204).end();
+    };
+
     return controller;
 };
