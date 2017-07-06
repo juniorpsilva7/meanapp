@@ -1,24 +1,22 @@
 // public/js/Controllers/LojasController.js
 
 angular.module('meanapp1').controller('LojasController',
-    function ($scope, $resource) {
+    function ($scope, Loja) {
 
         $scope.lojas = [];
 
         $scope.filtro = '';
+
+        $scope.mensagem = { texto: '' };
         
-        $scope.mesagem = {texto: ''};
-
-        var Loja = $resource('/lojas/:id');
-
         function buscaLojas() {
             Loja.query(function (lojas) {
                 $scope.lojas = lojas;
-                $scope.mesagem = {};
+                $scope.mensagem = {};
             },
                 function (erro) {
                     console.log(erro);
-                    $scope.mesagem = {texto: "Não foi posível obter a lista de lojas"};
+                    $scope.mensagem = { texto: "Não foi posível obter a lista de lojas" };
                 }
             );
 
@@ -30,7 +28,7 @@ angular.module('meanapp1').controller('LojasController',
                 buscaLojas, // callback de sucesso - recarrega a lista na view dpois da remoção
                 function (erro) {   // callback de falha
                     console.log(erro);
-                    $scope.mesagem = { texto: "Não foi posível remover a loja"};
+                    $scope.mensagem = { texto: "Não foi posível remover a loja" };
                 }
             );
 

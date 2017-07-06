@@ -10,6 +10,7 @@ var lojas = [
 ];
 
 module.exports = function(){
+    var ID_LOJA_INC = 3;
     var controller = {};
 
     controller.listaLojas = function(req, res){
@@ -31,6 +32,29 @@ module.exports = function(){
         });
         res.status(204).end();
     };
+
+    controller.salvaLoja = function(req, res){
+
+        var loja = req.body;
+        loja = loja._id ? atualiza(loja) : adiciona(loja);
+        res.json(loja);
+    };
+
+    function adiciona(lojaNova){
+        lojaNova._id = ++ID_LOJA_INC;
+        lojas.push(lojaNova);
+        return lojaNova;
+    }
+
+    function atualiza(lojaAlterar){
+        lojas = lojas.map(function(loja){
+            if(loja._id == lojaAlterar._id){ 
+                loja = lojaAlterar; 
+            }
+            return loja;
+        });
+        return lojaAlterar;
+    }
 
     return controller;
 };

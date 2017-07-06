@@ -3,7 +3,7 @@
 <p ng-show="mensagem.texto">
     {{mensagem.texto}}
 </p>
-<form>
+<form ng-submit="salva()">
     <div class="form-group">
         <label for="nome">Nome da Loja</label>
         <input type="text" class="form-control" id="nome" name="nome" required ng-model="loja.nome">
@@ -12,8 +12,7 @@
         <label for="email">Email</label>
         <div class="input-group">
             <span class="input-group-addon">@</span>
-            <input type="email" class="form-control" id="email" placeholder="email@exemplo.com" name="email" ng-model="loja.email"
-                required>
+            <input type="email" class="form-control" id="email" placeholder="email@exemplo.com" name="email" ng-model="loja.email" required>
         </div>
     </div>
     <div>

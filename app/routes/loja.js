@@ -5,7 +5,8 @@ module.exports = function(app){
     var controller = app.controllers.loja;
 
     app.route('/lojas')
-        .get(controller.listaLojas);
+        .get(controller.listaLojas)
+        .post(controller.salvaLoja);
 
     app.route('/lojas/:id')
         .get(controller.obtemLoja)
