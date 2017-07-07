@@ -1,0 +1,49 @@
+Instalar o Mongo
+https://www.mongodb.com/download-center?jmp=nav#community
+
+instalar em C:\Mongo
+
+Executar o Mongod
+Dentro da pasta do seu projeto Node criar subpasta data. Pelo prompt de comando, entre em C:\Mongo\bin e digite
+> mongod --dbpath c:\node\meanapp1\data\
+
+Executar o mongod
+Na msm pasta bin executar
+> mongo
+
+usar ou criar um DB, ex:
+> use <nomedoDB>
+
+INSERIR, ex:
+newstuff = [{ "username" : "testuser2", "email" : "testuser2@testdomain.com" }, { "username" : "testuser3", "email" : "testuser3@testdomain.com" }]
+db.<nomeDaCollection>.insert(newstuff);
+
+GET NO BANCO:
+db.<nomeDaCollection>.find().pretty()
+
+
+CRIAR USUARIO ADMIN:
+use admin
+> db.createUser(
+  {
+    user: "admin",
+    pwd: "admin",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+);
+
+OU 
+
+> db.addUser({user:'admin',pwd:'<password>',roles:["root"]})
+
+Verificar users:
+> db.system.users.find().pretty();
+
+MOSTRAR BANCOS
+> show dbs
+
+*******************
+NODEMON
+npm install nodemon -g
+nodemon server
+*******************
