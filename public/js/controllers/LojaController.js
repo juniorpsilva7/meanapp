@@ -30,4 +30,8 @@ angular.module('meanapp1').controller('LojaController',
                 });
         };
 
+        Loja.query(function(lojas){
+            $scope.lojas = lojas;
+        });
+
     });
