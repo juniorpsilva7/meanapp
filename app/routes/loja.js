@@ -1,16 +1,24 @@
 // app/routes/lojas.js
 
+function verificaAutenticacao(req, res, next){
+    if (req.isAuthenticated()){
+        return next();
+    } else {
+        res.status('401').json('Não autorizado');
+    }
+}
+
 module.exports = function(app){
 
     var controller = app.controllers.loja;
 
     app.route('/lojas')
-        .get(controller.listaLojas)
-        .post(controller.salvaLoja);
+        .get(verificaAutenticacao, controller.listaLojas)
+        .post(verificaAutenticacao, controller.salvaLoja);
 
     app.route('/lojas/:id')
-        .get(controller.obtemLoja)
-        .delete(controller.removeLoja);
+        .get(verificaAutenticacao, controller.obtemLoja)
+        .delete(verificaAutenticacao, controller.removeLoja);
 
     //Não será mais necessario o códig abaixo pois usamos o app.route
     // app.get('/lojas', controller.listaLojas);

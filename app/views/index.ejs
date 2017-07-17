@@ -11,6 +11,13 @@
 
 <body class="container">
     <h1>Index</h1>
+    <%if (usuarioLogado.length > 0) { %>
+    <div class="text-right">
+        <p>Logado como: <span id="usuario-logado"><%=usuarioLogado %></span>
+        <a href="/logout">Logout</a>
+        </p>
+    </div>
+    <% } %>
     <div ng-view></div>
 
     <script src="vendor/angular/angular.js"></script>
@@ -20,6 +27,7 @@
     <script src="js/controllers/LojasController.js"></script>
     <script src="js/controllers/LojaController.js"></script>
     <script src="js/services/LojaService.js"></script>
+    <script src="js/services/InterceptorService.js"></script>
 </body>
 
 </html>

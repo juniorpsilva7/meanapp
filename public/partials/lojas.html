@@ -1,8 +1,8 @@
 <!-- public/partials/lojas.html -->
 <div class="jumbotron">
-    <p ng-show="mensagem.texto">{{mensagem.texto}}</p>
     <h1 class="text-center">Bem-vindo ao MeanApp1</h1>
 </div>
+<p ng-show="mensagem.texto">{{mensagem.texto}}</p>
 <a ng-href="#/loja" class="btn btn-primary">Novo</a>
 <input ng-model="filtro" type="search" placeholder="Parte do nome">
 <p ng-show="lojas.length">Lojas cadastrados: {{lojas.length}}</p>

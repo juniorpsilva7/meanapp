@@ -1,7 +1,9 @@
 // public/js/main.js
 
 angular.module('meanapp1', ['ngRoute', 'ngResource'])
-    .config(function($routeProvider){
+    .config(function($routeProvider, $httpProvider){
+
+        $httpProvider.interceptors.push('meuInterceptor');
 
         $routeProvider.when('/lojas', {
             templateUrl: 'partials/lojas.html',
@@ -16,6 +18,10 @@ angular.module('meanapp1', ['ngRoute', 'ngResource'])
         $routeProvider.when('/loja', {
             templateUrl: 'partials/loja.html',
             controller: 'LojaController'
+        });
+
+        $routeProvider.when('/auth', {
+            templateUrl: 'partials/auth.html'
         });
 
         $routeProvider.otherwise({redirectTo: '/lojas'}); // rota alternativa caso não encontre a digitada

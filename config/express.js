@@ -30,7 +30,7 @@ module.exports = function(){
     app.use(session(
         {   secret: 'homem avestruz',
             resave: true,
-            saveUninitialize: true
+            saveUninitialized: true
         }
     ));
     app.use(passport.initialize());
