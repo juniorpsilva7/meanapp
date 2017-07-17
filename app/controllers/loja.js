@@ -1,5 +1,7 @@
 // app/controllers/loja.js
 
+var sanitize = require('mongo-sanitize');
+
 module.exports = function (app) {
 
     var Loja = app.models.loja;
@@ -35,7 +37,7 @@ module.exports = function (app) {
     };
 
     controller.removeLoja = function (req, res) {
-        var _id = req.params.id;
+        var _id = sanitize(req.params.id);
         Loja.remove({ "_id": _id }).exec()
             .then(
             function () {
@@ -49,12 +51,15 @@ module.exports = function (app) {
 
     controller.salvaLoja = function (req, res) {
         var _id = req.body._id;
-        
-        //testando por undefined
-        req.body.afiliada = req.body.afiliada || null;
+
+        var dados = {
+            "nome" : req.body.nome,
+            "email" : req.body.email,
+            "afiliada" : req.body.afiliada || null
+        };
 
         if (_id) {
-            Loja.findByIdAndUpdate(_id, req.body).exec()
+            Loja.findByIdAndUpdate(_id, dados).exec()
                 .then(function (loja) {
                     res.json(loja);
                 },
@@ -64,7 +69,7 @@ module.exports = function (app) {
                 }
                 );
         } else {
-            Loja.create(req.body)
+            Loja.create(dados)
                 .then(
                 function (loja) {
                     res.status(201).json(loja);
