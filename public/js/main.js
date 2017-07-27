@@ -24,6 +24,6 @@ angular.module('meanapp1', ['ngRoute', 'ngResource'])
             templateUrl: 'partials/auth.html'
         });
 
-        $routeProvider.otherwise({redirectTo: '/lojas'}); // rota alternativa caso não encontre a digitada
+        $routeProvider.otherwise({redirectTo: '/index'}); // rota alternativa caso não encontre a digitada
 
     });
