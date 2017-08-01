@@ -1,0 +1,30 @@
+<!-- partials/produto.html -->
+<h1 class="text-center">Produto</h1>
+<p ng-show="mensagem.texto">
+    {{mensagem.texto}}
+</p>
+<form ng-submit="salva()">
+    <div class="form-group">
+        <label for="nome">Nome do Produto</label>
+        <input type="text" class="form-control" id="nome" name="nome" required ng-model="produto.nome">
+    </div>
+    <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <div class="input-group">
+            <span class="input-group-addon">Breve descrição</span>
+            <input type="descricao" class="form-control" id="descricao" placeholder="Descrição do Produto" name="descricao" ng-model="produto.descricao" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="prodLoja">Loja</label>
+        <select id="prodLoja" class="form-control" 
+        ng-model="produto.prodLoja" 
+        ng-options="loja._id as loja.nome for loja in lojas"></select>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">
+Salvar
+</button>
+        <a href="#/produtos" class="btn btn-default">Voltar</a>
+    </div>
+</form>

@@ -1,4 +1,4 @@
-// app/models/loja.js
+// app/models/produto.js
 
 var mongoose = require('mongoose');
 
@@ -11,6 +11,10 @@ module.exports = function(){
         descricao: {
             type: String,
             required: true,         
+        },
+        prodLoja: {
+            type: mongoose.Schema.ObjectId,
+            ref: 'Loja'
         }
     });
 

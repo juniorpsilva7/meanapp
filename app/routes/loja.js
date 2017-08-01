@@ -1,6 +1,6 @@
 // app/routes/lojas.js
 
-var verificaAutenticacao= require('../utils/verificaAutenticacao');
+var verificaAutenticacao = require('../utils/verificaAutenticacao');
 
 module.exports = function(app){
 

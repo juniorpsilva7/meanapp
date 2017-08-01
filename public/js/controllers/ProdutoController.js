@@ -1,29 +1,29 @@
-// public/js/controller/LojaControlle.js
+// public/js/controller/ProdutoController.js
 
-angular.module('meanapp1').controller('LojaController',
-    function ($scope, $routeParams, Loja) {
+angular.module('meanapp1').controller('ProdutoController',
+    function ($scope, $routeParams, Produto, Loja) {
 
-        if ($routeParams.lojaId) {
-            Loja.get({ id: $routeParams.lojaId },
-                function (loja) {
-                    $scope.loja = loja;
+        if ($routeParams.produtoId) {
+            Produto.get({ id: $routeParams.produtoId },
+                function (produto) {
+                    $scope.produto = produto;
                 },
                 function (erro) {
-                    $scope.mensagem = { texto: 'Não foi possível obter a loja.' };
+                    $scope.mensagem = { texto: 'Não foi possível obter o produto' };
                     console.log(erro);
                 }
             );
 
         } else {
-            $scope.loja = new Loja();
+            $scope.produto = new Produto();
         }
 
         $scope.salva = function(){
-            $scope.loja.$save()
+            $scope.produto.$save()
                 .then(function(){
                     $scope.mensagem = {texto: 'Salvo com Sucesso'};
                     //limpa o formulário
-                    $scope.loja = new Loja();
+                    $scope.produto = new Produto();
                 })
                 .catch(function(erro){
                     $scope.mensagem = {texto: 'Não foi possível salvar'};

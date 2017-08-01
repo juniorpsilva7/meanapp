@@ -1,21 +1,16 @@
-// app/routes/lojas.js
+// app/routes/produtos.js
 
 var verificaAutenticacao= require('../utils/verificaAutenticacao');
 
 module.exports = function(app){
 
-    var controller = app.controllers.loja;
+    var controller = app.controllers.produto;
 
-    app.route('/lojas')
-        .get(verificaAutenticacao, controller.listaLojas)
-        .post(verificaAutenticacao, controller.salvaLoja);
+    app.route('/produtos')
+        .get(verificaAutenticacao, controller.listaProdutos)
+        .post(verificaAutenticacao, controller.salvaProduto);
 
-    app.route('/lojas/:id')
-        .get(verificaAutenticacao, controller.obtemLoja)
-        .delete(verificaAutenticacao, controller.removeLoja);
-
-    //Não será mais necessario o códig abaixo pois usamos o app.route
-    // app.get('/lojas', controller.listaLojas);
-    // app.get('/lojas/:id', controller.obtemLoja);
-    // app.delete('/lojas/:id', controller.removeLoja);
+    app.route('/produtos/:id')
+        .get(verificaAutenticacao, controller.obtemProduto)
+        .delete(verificaAutenticacao, controller.removeProduto);
 };

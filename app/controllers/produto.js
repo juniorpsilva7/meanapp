@@ -1,18 +1,18 @@
-// app/controllers/loja.js
+// app/controllers/produto.js
 
 var sanitize = require('mongo-sanitize');
 
 module.exports = function (app) {
 
-    var Produto = app.models.produto;
+    var Produto = app.models.Produto;
 
     var controller = {};
 
     controller.listaProdutos = function (req, res) {
-        Produto.find().populate('afiliada').exec()
+        Produto.find().populate('prodLoja').exec()
             .then(
-            function (lojas) {
-                res.json(lojas);
+            function (produtos) {
+                res.json(produtos);
             },
             function (erro) {
                 console.error(erro);
@@ -25,9 +25,9 @@ module.exports = function (app) {
         var _id = req.params.id;
         Produto.findById(_id).exec()
             .then(
-            function (loja) {
-                if (!loja) throw new Error("Produto não encontrado");
-                res.json(loja);
+            function (produto) {
+                if (!produto) throw new Error("Produto não encontrado");
+                res.json(produto);
             },
             function (erro) {
                 console.log(erro);
@@ -54,14 +54,14 @@ module.exports = function (app) {
 
         var dados = {
             "nome" : req.body.nome,
-            "email" : req.body.email,
-            "afiliada" : req.body.afiliada || null
+            "descricao" : req.body.descricao,
+            "prodLoja" : req.body.prodLoja || null
         };
 
         if (_id) {
             Produto.findByIdAndUpdate(_id, dados).exec()
-                .then(function (loja) {
-                    res.json(loja);
+                .then(function (produto) {
+                    res.json(produto);
                 },
                 function (erro) {
                     console.error(erro);
@@ -71,8 +71,8 @@ module.exports = function (app) {
         } else {
             Produto.create(dados)
                 .then(
-                function (loja) {
-                    res.status(201).json(loja);
+                function (produto) {
+                    res.status(201).json(produto);
                 },
                 function (erro) {
                     console.log(erro);

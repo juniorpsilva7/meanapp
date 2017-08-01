@@ -4,7 +4,7 @@ var sanitize = require('mongo-sanitize');
 
 module.exports = function (app) {
 
-    var Loja = app.models.loja;
+    var Loja = app.models.Loja;
 
     var controller = {};
 
