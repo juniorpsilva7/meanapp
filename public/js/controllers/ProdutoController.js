@@ -1,12 +1,14 @@
 // public/js/controller/ProdutoController.js
 
 angular.module('meanapp1').controller('ProdutoController',
-    function ($scope, $routeParams, Produto, Loja) {
+    function ($scope, $routeParams, $location, Produto, Loja) {
 
+        //modo edit do produto
         if ($routeParams.produtoId) {
             Produto.get({ id: $routeParams.produtoId },
                 function (produto) {
                     $scope.produto = produto;
+                    getLoja(produto.prodLoja);
                 },
                 function (erro) {
                     $scope.mensagem = { texto: 'Não foi possível obter o produto' };
@@ -14,25 +16,46 @@ angular.module('meanapp1').controller('ProdutoController',
                 }
             );
 
-        } else {
+        // modo adicionar novo produto em umaloja
+        } else if ($routeParams.lojaId) {
             $scope.produto = new Produto();
             $scope.produto.prodLoja = $routeParams.lojaId;
+            getLoja($routeParams.lojaId);
+
+        // se tentar acessar um novo produto sem passar uma loja como param   
+        } else {
+            alert('Não é possível adicionar produto sem loja');
+            $location.path('/lojas');
         }
 
-        $scope.salva = function(){
+        //função para o submit do form
+        $scope.salva = function () {
             $scope.produto.$save()
-                .then(function(){
-                    $scope.mensagem = {texto: 'Salvo com Sucesso'};
+                .then(function () {
+                    $scope.mensagem = { texto: 'Salvo com Sucesso' };
                     //limpa o formulário
                     $scope.produto = new Produto();
                 })
-                .catch(function(erro){
-                    $scope.mensagem = {texto: 'Não foi possível salvar'};
+                .catch(function (erro) {
+                    $scope.mensagem = { texto: 'Não foi possível salvar' };
                 });
         };
 
-        Loja.query(function(lojas){
-            $scope.lojas = lojas;
-        });
+        //HELP FUNCTIONS
+        function getLoja(idLoja) {
+            Loja.get({ id: idLoja },
+                function (loja) {
+                    $scope.loja = loja;
+                },
+                function (erro) {
+                    $scope.mensagem = { texto: 'Não foi possível obter o nome da Loja' };
+                    console.log(erro);
+                }
+            );
+        }
+
+        // Loja.query(function(lojas){
+        //     $scope.lojas = lojas;
+        // });
 
     });
