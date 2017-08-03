@@ -36,6 +36,11 @@ angular.module('meanapp1', ['ngRoute', 'ngResource'])
             controller: 'ProdutoController'
         });
 
+        $routeProvider.when('/produto/loja/:lojaId', {
+            templateUrl: 'partials/produto/produto.html',
+            controller: 'ProdutoController'
+        });
+
         // routeProvider AUTH
         $routeProvider.when('/auth', {
             templateUrl: 'partials/auth.html'

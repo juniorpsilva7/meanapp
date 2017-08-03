@@ -16,6 +16,7 @@ angular.module('meanapp1').controller('ProdutoController',
 
         } else {
             $scope.produto = new Produto();
+            $scope.produto.prodLoja = $routeParams.lojaId;
         }
 
         $scope.salva = function(){

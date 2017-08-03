@@ -1,7 +1,7 @@
 // public/js/Controllers/LojasController.js
 
 angular.module('meanapp1').controller('LojasController',
-    function ($scope, Loja) {
+    function ($scope, Loja, Produto, $http) {
 
         $scope.lojas = [];
 
@@ -31,7 +31,11 @@ angular.module('meanapp1').controller('LojasController',
                     $scope.mensagem = { texto: "Não foi posível remover a loja" };
                 }
             );
+        };
 
+        $scope.addProduto = function (loja){
+            console.log(loja._id);
+            $http.post('http://localhost:3000/#/produto',  { idLoja : loja._id });
         };
 
     });

@@ -11,16 +11,14 @@
     <div class="form-group">
         <label for="descricao">Descrição</label>
         <div class="input-group">
-            <span class="input-group-addon">Breve descrição</span>
-            <input type="descricao" class="form-control" id="descricao" placeholder="Descrição do Produto" name="descricao" ng-model="produto.descricao" required>
+            <input type="text" class="form-control" id="descricao" placeholder="Descrição do Produto" name="descricao" ng-model="produto.descricao" required>
         </div>
     </div>
-    <div class="form-group">
+     <div class="form-group">
         <label for="prodLoja">Loja</label>
-        <select id="prodLoja" class="form-control" 
-        ng-model="produto.prodLoja" 
-        ng-options="loja._id as loja.nome for loja in lojas"></select>
-    </div>
+        <!-- <select id="prodLoja" class="form-control" ng-model="produto.prodLoja" ng-options="loja._id as loja.nome for loja in lojas"></select> -->
+        <input ng-disabled="true" type="text" id="prodLoja" name="prodLoja" class="form-control" ng-model="produto.prodLoja">
+    </div> 
     <div>
         <button type="submit" class="btn btn-primary">
 Salvar
