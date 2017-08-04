@@ -15,9 +15,9 @@ module.exports = function(){
                 unique: true  //chave primaria nao pode ter duas lojas com mesmo email
             }            
         },
-        afiliada: {
+        usuario: {
             type: mongoose.Schema.ObjectId,
-            ref: 'Loja'
+            ref: 'Usuario'
         }
     });
 

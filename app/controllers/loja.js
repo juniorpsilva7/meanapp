@@ -51,11 +51,12 @@ module.exports = function (app) {
 
     controller.salvaLoja = function (req, res) {
         var _id = req.body._id;
+        var userId = req.user._id;
 
         var dados = {
             "nome" : req.body.nome,
             "email" : req.body.email,
-            "afiliada" : req.body.afiliada || null
+            "usuario" : userId
         };
 
         if (_id) {
