@@ -14,7 +14,7 @@ module.exports = function(app){
         .get(verificaAutenticacao, controller.obtemProduto)
         .delete(verificaAutenticacao, controller.removeProduto);
 
-    //     app.route('/produtos')
+    // app.route('/produtos')
     //     .get(controller.listaProdutos)
     //     .post(controller.salvaProduto);
 

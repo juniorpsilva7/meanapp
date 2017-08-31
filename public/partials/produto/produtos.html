@@ -4,9 +4,15 @@
 </div>
 <p ng-show="mensagem.texto">{{mensagem.texto}}</p>
 <a ng-href="#/produto" class="btn btn-primary">Novo Produto</a>
-<input ng-model="filtro" type="search" placeholder="Parte do nome">
+ <!-- <input ng-model="filtro" type="search" placeholder="Parte do nome">  -->
 <p ng-show="produtos.length">Produtos cadastrados: {{produtos.length}}</p>
 <p class="text-info" ng-hide="produtos.length">Não há produtos cadastrados</p>
+ <div class="form-group">
+    <label for="selectLoja">Filtrar por Loja</label>
+    <select id="selectLoja" class="form-control" 
+    ng-model="filtro" 
+    ng-options="loja._id as loja.nome for loja in lojas"></select>
+</div> 
 <div class="table-responsive">
     <table class="table table-hover">
         <tr>

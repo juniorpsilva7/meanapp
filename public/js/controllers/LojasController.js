@@ -32,10 +32,4 @@ angular.module('meanapp1').controller('LojasController',
                 }
             );
         };
-
-        $scope.addProduto = function (loja){
-            console.log(loja._id);
-            $http.post('http://localhost:3000/#/produto',  { idLoja : loja._id });
-        };
-
     });

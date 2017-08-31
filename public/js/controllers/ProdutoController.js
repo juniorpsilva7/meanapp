@@ -16,7 +16,7 @@ angular.module('meanapp1').controller('ProdutoController',
                 }
             );
 
-        // modo adicionar novo produto em umaloja
+        // modo adicionar novo produto em uma loja
         } else if ($routeParams.lojaId) {
             $scope.produto = new Produto();
             $scope.produto.prodLoja = $routeParams.lojaId;

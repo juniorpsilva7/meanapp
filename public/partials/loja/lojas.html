@@ -12,7 +12,7 @@
         <tr>
             <th>NOME</th>
             <th>E-MAIL</th>
-            <th>Afiliada</th>
+            <th>USUÁRIO</th>
             <th class="text-center">Ação</th>
         </tr>
         <tr ng-repeat="loja in lojas | filter: filtro">
@@ -20,7 +20,7 @@
                 <a ng-href="#/loja/{{loja._id}}">{{loja.nome}}</a>
             </td>
             <td>{{loja.email}}</td>
-            <td>{{loja.afiliada.nome}}</td>
+            <td>{{loja.usuario.nome}}</td>
             <td class="text-center">
                 <button ng-click="remove(loja)" class="btn btn-warning">Remover</button>
                 <a href="#/produto/loja/{{loja._id}}" class="btn btn-primary">Add Produto</a>

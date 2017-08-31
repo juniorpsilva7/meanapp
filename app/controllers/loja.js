@@ -9,7 +9,7 @@ module.exports = function (app) {
     var controller = {};
 
     controller.listaLojas = function (req, res) {
-        Loja.find().populate('afiliada').exec()
+        Loja.find().exec()
             .then(
             function (lojas) {
                 res.json(lojas);

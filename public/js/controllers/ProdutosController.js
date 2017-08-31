@@ -1,7 +1,7 @@
 // public/js/Controllers/ProdutosController.js
 
 angular.module('meanapp1').controller('ProdutosController',
-    function ($scope, Produto) {
+    function ($scope, Produto, Loja) {
 
         $scope.produtos = [];
 
@@ -33,5 +33,9 @@ angular.module('meanapp1').controller('ProdutosController',
             );
 
         };
+
+        Loja.query(function(lojas){
+            $scope.lojas = lojas;
+        });
 
     });
