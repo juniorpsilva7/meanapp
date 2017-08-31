@@ -9,7 +9,8 @@ module.exports = function (app) {
     var controller = {};
 
     controller.listaLojas = function (req, res) {
-        Loja.find().exec()
+        var userId = req.user._id;
+        Loja.find({usuario:userId}).exec()
             .then(
             function (lojas) {
                 res.json(lojas);
