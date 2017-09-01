@@ -6,6 +6,7 @@ angular.module('meanapp1').controller('ProdutosController',
         $scope.produtos = [];
 
         $scope.filtro = '';
+        $scope.filtro2 = '';
 
         $scope.mensagem = { texto: '' };
         
@@ -24,13 +25,17 @@ angular.module('meanapp1').controller('ProdutosController',
         buscaProdutos();
 
         $scope.remove = function (produto) {
-            Produto.delete({ id: produto._id },
-                buscaProdutos, // callback de sucesso - recarrega a lista na view dpois da remoção
-                function (erro) {   // callback de falha
-                    console.log(erro);
-                    $scope.mensagem = { texto: "Não foi posível remover o produto" };
-                }
-            );
+            if (confirm('Tem certeza que deseja remover esse produto?')) {
+                Produto.delete({ id: produto._id },
+                    buscaProdutos, // callback de sucesso - recarrega a lista na view dpois da remoção
+                    function (erro) {   // callback de falha
+                        console.log(erro);
+                        $scope.mensagem = { texto: "Não foi posível remover o produto" };
+                    }
+                );
+            } else {
+                //nada
+            }
 
         };
 

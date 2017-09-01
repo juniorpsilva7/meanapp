@@ -24,12 +24,17 @@ angular.module('meanapp1').controller('LojasController',
         buscaLojas();
 
         $scope.remove = function (loja) {
-            Loja.delete({ id: loja._id },
-                buscaLojas, // callback de sucesso - recarrega a lista na view dpois da remoção
-                function (erro) {   // callback de falha
-                    console.log(erro);
-                    $scope.mensagem = { texto: "Não foi posível remover a loja" };
-                }
-            );
+            if (confirm('Tem certeza que deseja remover essa Loja?')) {
+                Loja.delete({ id: loja._id },
+                    buscaLojas, // callback de sucesso - recarrega a lista na view dpois da remoção
+                    function (erro) {   // callback de falha
+                        console.log(erro);
+                        $scope.mensagem = { texto: "Não foi posível remover a loja" };
+                    }
+                );
+            } else {
+                //nada
+            }
         };
+
     });

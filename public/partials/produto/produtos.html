@@ -4,7 +4,7 @@
 </div>
 <p ng-show="mensagem.texto">{{mensagem.texto}}</p>
 <a ng-href="#/produto" class="btn btn-primary">Novo Produto</a>
- <!-- <input ng-model="filtro" type="search" placeholder="Parte do nome">  -->
+   <input ng-model="filtro2" type="search" placeholder="Parte do nome">   
 <p ng-show="produtos.length">Produtos cadastrados: {{produtos.length}}</p>
 <p class="text-info" ng-hide="produtos.length">Não há produtos cadastrados</p>
  <div class="form-group">
@@ -21,7 +21,7 @@
             <th>LOJA</th>
             <th class="text-center">Ação</th>
         </tr>
-        <tr ng-repeat="produto in produtos | filter: filtro">
+        <tr ng-repeat="produto in produtos | filter: filtro | filter: filtro2">
             <td>
                 <a ng-href="#/produto/{{produto._id}}">{{produto.nome}}</a>
             </td>
