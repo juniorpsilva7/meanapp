@@ -1,6 +1,6 @@
 // public/js/main.js
 
-angular.module('meanapp1', ['ngRoute', 'ngResource'])
+angular.module('meanapp1', ['ngRoute', 'ngResource', 'ngFileUpload'])
     .config(function ($routeProvider, $httpProvider) {
 
         $httpProvider.interceptors.push('meuInterceptor');
