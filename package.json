@@ -21,6 +21,7 @@
     "mongodb": "^1.4.40",
     "mongoose": "^3.8.40",
     "mongoose-findorcreate": "^0.1.2",
+    "multer": "^1.1.0",
     "passport": "^0.2.2",
     "passport-github": "^0.1.5"
   }

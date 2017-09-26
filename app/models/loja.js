@@ -18,6 +18,10 @@ module.exports = function(){
         usuario: {
             type: mongoose.Schema.ObjectId,
             ref: 'Usuario'
+        },
+        foto: {
+            type: String,
+            //required: true
         }
     });
 

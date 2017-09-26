@@ -4,7 +4,7 @@
     {{mensagem.texto}}
 </p>
 <form ng-submit="salva()" name="loja_form">
-    <input 
+    <!-- <input 
         type="file" 
         ngf-select 
         ng-model="loja.foto" 
@@ -12,12 +12,20 @@
         ngf-pattern="'image/*'"
         accept="image/*" 
         ngf-max-size="20MB" 
-    />
-    Image thumbnail: <img style="width:100px;" ng-show="!!loja.foto" ngf-thumbnail="loja.foto || '/thumb.jpg'"/>
-    <i ng-show="foto.$error.required">*required</i><br>
-    <i ng-show="foto.$error.maxSize">File too large 
-    {{foto.size / 1000000|number:1}}MB: max 20M</i>
-    <p>{{progress}}</p>
+    /> -->
+    <button class="button btn-warning">
+        <input type="file" 
+        ngf-select 
+        ng-model="loja.foto" 
+        name="foto" 
+        ngf-pattern="'image/*'"
+        ngf-accept="'image/*'" 
+        ngf-max-size="20MB" 
+        ngf-min-height="100"
+        ngf-resize="{width: 100, height: 100}"/>
+    </button><br/><br/>
+
+    Image thumbnail:<br/> <img style="width:100px;" ng-show="!!loja.foto" ngf-thumbnail="loja.foto || '/thumb.jpg'"/>
 
     <div class="form-group">
         <label for="nome">Nome da Loja</label>
