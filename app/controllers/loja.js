@@ -2,6 +2,7 @@
 
 var sanitize = require('mongo-sanitize');
 var multer = require('multer');
+//var upload = multer({ dest: 'uploads/' }).single('foto');
 
 module.exports = function (app) {
 
@@ -67,13 +68,16 @@ module.exports = function (app) {
     }).single('foto');
 
     controller.uploadFotoLoja = function(req, res){
-        console.log('123');
+        console.log('1');
         upload(req,res,function(err){
+            console.log('12');
             if(err){
+                console.log(err);
                  res.json({error_code:1,err_desc:err});
                  return;
             }
-             res.json({error_code:0,err_desc:null});
+            console.log('123');
+            res.json({error_code:0,err_desc:null});
         });
     };
     // ================= UPLOAD IMAGE API
