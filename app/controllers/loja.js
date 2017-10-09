@@ -9,6 +9,9 @@ module.exports = function (app) {
     var Loja = app.models.Loja;
 
     var controller = {};
+    
+    var nomeFoto = '';
+    var diretorioFotos = './public/images/';
 
     controller.listaLojas = function (req, res) {
         var userId = req.user._id;
@@ -55,17 +58,19 @@ module.exports = function (app) {
     // ================= UPLOAD IMAGE API
     var storage = multer.diskStorage({ //multers disk storage settings
         destination: function (req, file, cb) {
-            cb(null, './uploads/');
+            cb(null, diretorioFotos);
         },
         filename: function (req, file, cb) {
             var datetimestamp = Date.now();
-            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+            var storageNomeFoto = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1];
+            nomeFoto = storageNomeFoto;
+            cb(null, storageNomeFoto);
         }
     });
 
     var upload = multer({ //multer settings
         storage: storage
-    }).single('foto');
+    }).single('file');
 
     controller.uploadFotoLoja = function(req, res){
         console.log('1');
@@ -85,14 +90,13 @@ module.exports = function (app) {
     controller.salvaLoja = function (req, res) {
         var _id = req.body._id;
         var userId = req.user._id;
-        //var nomeFoto = req.body.foto.name;
-        var nomeFoto = 'TesteNomeFoto.jpg';
+        var pathFotoLoja = diretorioFotos + nomeFoto;
 
         var dados = {
             "nome" : req.body.nome,
             "email" : req.body.email,
             "usuario" : userId,
-            "foto": nomeFoto
+            "foto": pathFotoLoja
         };
 
         if (_id) {
