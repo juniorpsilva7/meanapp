@@ -20,9 +20,10 @@ angular.module('meanapp1').controller('LojaController',
 
         $scope.salva = function () {
             if ($scope.loja_form.foto.$valid && $scope.loja.foto) {
+
                 uploadFotoLoja($scope.loja.foto);
-            }
-            $scope.loja.$save()
+
+                $scope.loja.$save()
                 .then(function () {
                     $scope.mensagem = { texto: 'Salvo com Sucesso' };
                     //limpa o formulário
@@ -31,6 +32,10 @@ angular.module('meanapp1').controller('LojaController',
                 .catch(function (erro) {
                     $scope.mensagem = { texto: 'Não foi possível salvar' };
                 });
+            } else {
+                $scope.mensagem = { texto: 'Não foi possível salvar - Imagem' };
+            }
+            
         };
 
         Loja.query(function (lojas) {
