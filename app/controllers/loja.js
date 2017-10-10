@@ -11,7 +11,7 @@ module.exports = function (app) {
     var controller = {};
     
     var nomeFoto = '';
-    var diretorioFotos = './public/images/';
+    var diretorioFotos = './public/images/lojas/';
 
     controller.listaLojas = function (req, res) {
         var userId = req.user._id;
@@ -73,15 +73,12 @@ module.exports = function (app) {
     }).single('file');
 
     controller.uploadFotoLoja = function(req, res){
-        console.log('1');
         upload(req,res,function(err){
-            console.log('12');
             if(err){
                 console.log(err);
                  res.json({error_code:1,err_desc:err});
                  return;
             }
-            console.log('123');
             res.json({error_code:0,err_desc:null});
         });
     };
@@ -90,7 +87,7 @@ module.exports = function (app) {
     controller.salvaLoja = function (req, res) {
         var _id = req.body._id;
         var userId = req.user._id;
-        var pathFotoLoja = diretorioFotos + nomeFoto;
+        var pathFotoLoja = "/images/lojas/" + nomeFoto;
 
         var dados = {
             "nome" : req.body.nome,

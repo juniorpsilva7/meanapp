@@ -20,7 +20,6 @@ angular.module('meanapp1').controller('LojaController',
 
         $scope.salva = function () {
             if ($scope.loja_form.foto.$valid && $scope.loja.foto) {
-                console.log('passou aqui 1');
                 uploadFotoLoja($scope.loja.foto);
             }
             $scope.loja.$save()
