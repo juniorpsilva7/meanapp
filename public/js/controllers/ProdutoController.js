@@ -35,6 +35,8 @@ angular.module('meanapp1').controller('ProdutoController',
                     $scope.mensagem = { texto: 'Salvo com Sucesso' };
                     //limpa o formulário
                     $scope.produto = new Produto();
+                    $scope.produto.prodLoja = $routeParams.lojaId;
+                    //getLoja($routeParams.lojaId);
                 })
                 .catch(function (erro) {
                     $scope.mensagem = { texto: 'Não foi possível salvar' };
@@ -46,6 +48,7 @@ angular.module('meanapp1').controller('ProdutoController',
             Loja.get({ id: idLoja },
                 function (loja) {
                     $scope.loja = loja;
+                    console.log("dentro do getLoja");
                 },
                 function (erro) {
                     $scope.mensagem = { texto: 'Não foi possível obter o nome da Loja' };

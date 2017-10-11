@@ -51,6 +51,7 @@ module.exports = function (app) {
 
     controller.salvaProduto = function (req, res) {
         var _id = req.body._id;
+        console.log(req.body.prodLoja);
 
         var dados = {
             "nome" : req.body.nome,

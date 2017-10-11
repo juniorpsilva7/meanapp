@@ -14,7 +14,8 @@ module.exports = function(){
         },
         prodLoja: {
             type: mongoose.Schema.ObjectId,
-            ref: 'Loja'
+            ref: 'Loja',
+            required: true
         }
     });
 

@@ -17,11 +17,12 @@ module.exports = function(){
         },
         usuario: {
             type: mongoose.Schema.ObjectId,
-            ref: 'Usuario'
+            ref: 'Usuario',
+            required: true
         },
         foto: {
             type: String,
-            //required: true
+            required: true
         }
     });
 
