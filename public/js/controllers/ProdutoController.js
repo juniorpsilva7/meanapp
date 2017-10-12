@@ -48,7 +48,6 @@ angular.module('meanapp1').controller('ProdutoController',
             Loja.get({ id: idLoja },
                 function (loja) {
                     $scope.loja = loja;
-                    console.log("dentro do getLoja");
                 },
                 function (erro) {
                     $scope.mensagem = { texto: 'Não foi possível obter o nome da Loja' };
