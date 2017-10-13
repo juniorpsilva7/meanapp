@@ -19,6 +19,7 @@
             <th>NOME</th>
             <th>DESCRICAO</th>
             <th>LOJA</th>
+            <th>FOTO</th>
             <th class="text-center">Ação</th>
         </tr>
         <tr ng-repeat="produto in produtos | filter: filtro | filter: filtro2">
@@ -27,6 +28,7 @@
             </td>
             <td>{{produto.descricao}}</td>
             <td>{{produto.prodLoja.nome}}</td>
+            <td><img src="{{produto.foto}}" alt="" border=3 height=100 width=100></td>
             <td class="text-center">
                 <button ng-click="remove(produto)" class="btn btn-warning">Remover</button>
             </td>

@@ -16,6 +16,10 @@ module.exports = function(){
             type: mongoose.Schema.ObjectId,
             ref: 'Loja',
             required: true
+        },
+        foto: {
+            type: String,
+            required: true
         }
     });
 

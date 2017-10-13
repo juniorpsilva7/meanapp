@@ -2,7 +2,6 @@
 
 var sanitize = require('mongo-sanitize');
 var multer = require('multer');
-//var upload = multer({ dest: 'uploads/' }).single('foto');
 
 module.exports = function (app) {
 

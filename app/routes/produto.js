@@ -1,8 +1,8 @@
 // app/routes/produtos.js
 
-var verificaAutenticacao= require('../utils/verificaAutenticacao');
+var verificaAutenticacao = require('../utils/verificaAutenticacao');
 
-module.exports = function(app){
+module.exports = function (app) {
 
     var controller = app.controllers.produto;
 
@@ -13,6 +13,9 @@ module.exports = function(app){
     app.route('/produtos/:id')
         .get(verificaAutenticacao, controller.obtemProduto)
         .delete(verificaAutenticacao, controller.removeProduto);
+
+    app.route('/lojas/uploadFotoProduto')
+        .post(verificaAutenticacao, controller.uploadFotoProduto);
 
     // app.route('/produtos')
     //     .get(controller.listaProdutos)

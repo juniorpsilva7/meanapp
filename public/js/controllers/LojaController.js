@@ -33,7 +33,7 @@ angular.module('meanapp1').controller('LojaController',
                     $scope.mensagem = { texto: 'Não foi possível salvar' };
                 });
             } else {
-                $scope.mensagem = { texto: 'Não foi possível salvar - Imagem' };
+                $scope.mensagem = { texto: 'Não foi possível salvar - Problemas com a Foto' };
             }
             
         };

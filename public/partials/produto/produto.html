@@ -4,7 +4,14 @@
 <p ng-show="mensagem.texto">
     {{mensagem.texto}}
 </p>
-<form ng-submit="salva()">
+<form ng-submit="salva()" name="produto_form">
+    <button class="button btn-warning">
+        <input type="file" ngf-select ng-model="produto.foto" name="foto" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB"
+            ngf-min-height="100" ngf-resize="{width: 100, height: 100}" />
+    </button><br/><br/>
+    Image thumbnail:<br/>
+    <img style="width:100px;" ng-show="!!produto.foto" ngf-thumbnail="produto.foto || '/thumb.jpg'" />
+
     <div class="form-group">
         <label for="nome">Nome do Produto</label>
         <input type="text" class="form-control" id="nome" name="nome" required ng-model="produto.nome">
@@ -12,16 +19,17 @@
     <div class="form-group">
         <label for="descricao">Descrição</label>
         <div class="input-group">
-            <input type="text" class="form-control" id="descricao" placeholder="Descrição do Produto" name="descricao" ng-model="produto.descricao" required>
+            <input type="text" class="form-control" id="descricao" placeholder="Descrição do Produto" name="descricao" ng-model="produto.descricao"
+                required>
         </div>
     </div>
-     <div class="form-group">
+    <div class="form-group">
         <input ng-disabled="true" ng-hide="true" type="text" id="prodLoja" name="prodLoja" class="form-control" ng-model="produto.prodLoja">
-    </div> 
+    </div>
     <div>
         <button type="submit" class="btn btn-primary">
-Salvar
-</button>
+            Salvar
+        </button>
         <a href="#/produtos" class="btn btn-default">Voltar</a>
     </div>
 </form>
