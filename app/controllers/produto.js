@@ -2,6 +2,7 @@
 
 var sanitize = require('mongo-sanitize');
 var multer = require('multer');
+var fs = require('fs');
 
 module.exports = function (app) {
 
@@ -42,6 +43,25 @@ module.exports = function (app) {
 
     controller.removeProduto = function (req, res) {
         var _id = sanitize(req.params.id);
+
+        var pathProdutoFotoDel;
+
+        function removeFotoProduto() {
+            //console.log('... TESTE 2 ' + JSON.stringify(pathProdutoFotoDel));
+            fs.unlink("./public" + pathProdutoFotoDel, (err) => {
+                if (err) {
+                    console.log("failed to delete local image:" + err);
+                } else {
+                    console.log('successfully deleted local image');
+                }
+            });
+        }
+
+        Produto.findOne({ _id: _id }, function (err, produto) {
+            pathProdutoFotoDel = produto.foto;
+            removeFotoProduto();
+        });
+
         Produto.remove({ "_id": _id }).exec()
             .then(
             function () {
@@ -60,7 +80,7 @@ module.exports = function (app) {
         },
         filename: function (req, file, cb) {
             var datetimestamp = Date.now();
-            var storageNomeFoto = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1];
+            var storageNomeFoto = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1];
             nomeFoto = storageNomeFoto;
             cb(null, storageNomeFoto);
         }
@@ -70,14 +90,14 @@ module.exports = function (app) {
         storage: storage
     }).single('file');
 
-    controller.uploadFotoProduto = function(req, res){
-        upload(req,res,function(err){
-            if(err){
+    controller.uploadFotoProduto = function (req, res) {
+        upload(req, res, function (err) {
+            if (err) {
                 console.log(err);
-                 res.json({error_code:1,err_desc:err});
-                 return;
+                res.json({ error_code: 1, err_desc: err });
+                return;
             }
-            res.json({error_code:0,err_desc:null});
+            res.json({ error_code: 0, err_desc: null });
         });
     };
     // ================= UPLOAD IMAGE API
@@ -88,9 +108,9 @@ module.exports = function (app) {
         var pathFotoLoja = "/images/produtos/" + nomeFoto;
 
         var dados = {
-            "nome" : req.body.nome,
-            "descricao" : req.body.descricao,
-            "prodLoja" : req.body.prodLoja || null,
+            "nome": req.body.nome,
+            "descricao": req.body.descricao,
+            "prodLoja": req.body.prodLoja || null,
             "foto": pathFotoLoja
         };
 
