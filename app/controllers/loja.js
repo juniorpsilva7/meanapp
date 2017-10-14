@@ -2,19 +2,20 @@
 
 var sanitize = require('mongo-sanitize');
 var multer = require('multer');
+var fs = require('fs');
 
 module.exports = function (app) {
 
     var Loja = app.models.Loja;
 
     var controller = {};
-    
+
     var nomeFoto = '';
     var diretorioFotos = './public/images/lojas/';
 
     controller.listaLojas = function (req, res) {
         var userId = req.user._id;
-        Loja.find({usuario:userId}).exec()
+        Loja.find({ usuario: userId }).exec()
             .then(
             function (lojas) {
                 res.json(lojas);
@@ -43,6 +44,24 @@ module.exports = function (app) {
 
     controller.removeLoja = function (req, res) {
         var _id = sanitize(req.params.id);
+        var pathLojaFotoDel;
+
+        function removeFotoLoja(){
+            //console.log('... TESTE 2 ' + JSON.stringify(pathLojaFotoDel));
+            fs.unlink("./public"+pathLojaFotoDel, (err) => {
+                if (err) {
+                    console.log("failed to delete local image:"+err);
+                } else {
+                    console.log('successfully deleted local image');                                
+                }
+        });
+        }
+
+        Loja.findOne({_id:_id}, function(err, loja){
+            pathLojaFotoDel = loja.foto;
+            removeFotoLoja();
+        });
+
         Loja.remove({ "_id": _id }).exec()
             .then(
             function () {
@@ -61,7 +80,7 @@ module.exports = function (app) {
         },
         filename: function (req, file, cb) {
             var datetimestamp = Date.now();
-            var storageNomeFoto = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1];
+            var storageNomeFoto = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1];
             nomeFoto = storageNomeFoto;
             cb(null, storageNomeFoto);
         }
@@ -71,14 +90,14 @@ module.exports = function (app) {
         storage: storage
     }).single('file');
 
-    controller.uploadFotoLoja = function(req, res){
-        upload(req,res,function(err){
-            if(err){
+    controller.uploadFotoLoja = function (req, res) {
+        upload(req, res, function (err) {
+            if (err) {
                 console.log(err);
-                 res.json({error_code:1,err_desc:err});
-                 return;
+                res.json({ error_code: 1, err_desc: err });
+                return;
             }
-            res.json({error_code:0,err_desc:null});
+            res.json({ error_code: 0, err_desc: null });
         });
     };
     // ================= UPLOAD IMAGE API
@@ -89,9 +108,9 @@ module.exports = function (app) {
         var pathFotoLoja = "/images/lojas/" + nomeFoto;
 
         var dados = {
-            "nome" : req.body.nome,
-            "email" : req.body.email,
-            "usuario" : userId,
+            "nome": req.body.nome,
+            "email": req.body.email,
+            "usuario": userId,
             "foto": pathFotoLoja
         };
 

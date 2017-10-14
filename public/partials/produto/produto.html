@@ -5,12 +5,14 @@
     {{mensagem.texto}}
 </p>
 <form ng-submit="salva()" name="produto_form">
-    <button class="button btn-warning">
-        <input type="file" ngf-select ng-model="produto.foto" name="foto" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB"
-            ngf-min-height="100" ngf-resize="{width: 100, height: 100}" />
-    </button><br/><br/>
-    Image thumbnail:<br/>
-    <img style="width:100px;" ng-show="!!produto.foto" ngf-thumbnail="produto.foto || '/thumb.jpg'" />
+    <div class="form-group">
+        <button class="button btn-warning">
+            <input type="file" ngf-select ng-model="produto.foto" name="foto" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB"
+                ngf-min-height="100" ngf-resize="{width: 100, height: 100}" />
+        </button><br/><br/>
+        Image thumbnail:<br/>
+        <img style="width:100px;" ng-show="!!produto.foto" ngf-thumbnail="produto.foto || '/thumb.jpg'" />
+    </div>
 
     <div class="form-group">
         <label for="nome">Nome do Produto</label>
