@@ -12,4 +12,10 @@ module.exports = function(app){
         req.logOut(); // exposto pelo passport
         res.redirect('/');
     });
+
+    app.get('/auth/facebook', passport.authenticate('facebook'));
+    app.get('/auth/facebook/callback', 
+            passport.authenticate('facebook', {
+                successRedirect: '/#/lojas'
+            }));
 }
