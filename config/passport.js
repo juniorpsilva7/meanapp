@@ -31,12 +31,14 @@ module.exports = function(){
     passport.use(new FacebookStrategy({
         clientID: '291215501365629',
         clientSecret: '58c7085e7a1354a825fec342b5899b08',
-        callbackURL: 'http://localhost:3000/auth/facebook/callback'
+        callbackURL: 'http://localhost:3000/auth/facebook/callback',
+        enableProof: true,
+        profileFields: ['id', 'emails', 'name'] //This
     }, function(acessToken, refreshToken, profile, done){
 
         Usuario.findOrCreate(
-            { "login" : profile.username },
-            { "nome" : profile.username },
+            { "login" : profile.emails[0].value },
+            { "nome" : profile.emails[0].value },
             function(erro, usuario){
                 if(erro){
                     console.log(erro);
@@ -45,6 +47,7 @@ module.exports = function(){
                 return done(null, usuario);
             }
         );
+
     }));
 
     passport.serializeUser(function(usuario, done){
