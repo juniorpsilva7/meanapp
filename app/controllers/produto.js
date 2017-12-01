@@ -14,7 +14,8 @@ module.exports = function (app) {
     var diretorioFotos = './public/images/produtos/';
 
     controller.listaProdutos = function (req, res) {
-        Produto.find().populate('prodLoja').exec()
+        var userId = req.user._id;
+        Produto.find({ usuario: userId }).populate('prodLoja').exec()
             .then(
             function (produtos) {
                 res.json(produtos);
@@ -104,6 +105,7 @@ module.exports = function (app) {
 
     controller.salvaProduto = function (req, res) {
         var _id = req.body._id;
+        var userId = req.user._id;
         console.log(req.body.prodLoja);
         var pathFotoLoja = "/images/produtos/" + nomeFoto;
 
@@ -111,6 +113,7 @@ module.exports = function (app) {
             "nome": req.body.nome,
             "descricao": req.body.descricao,
             "prodLoja": req.body.prodLoja || null,
+            "usuario": userId,
             "foto": pathFotoLoja
         };
 

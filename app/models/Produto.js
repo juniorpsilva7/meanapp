@@ -17,6 +17,11 @@ module.exports = function(){
             ref: 'Loja',
             required: true
         },
+        usuario: {
+            type: mongoose.Schema.ObjectId,
+            ref: 'Usuario',
+            required: true
+        },
         foto: {
             type: String,
             required: true
