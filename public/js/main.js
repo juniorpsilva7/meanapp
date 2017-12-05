@@ -4,6 +4,13 @@ angular.module('meanapp1', ['ngRoute', 'ngResource', 'ngFileUpload'])
     .config(function ($routeProvider, $httpProvider) {
 
         $httpProvider.interceptors.push('meuInterceptor');
+
+        // routeProvider Index Principal
+        $routeProvider.when('/index', {
+            templateUrl: 'partials/index/main_index.html',
+            controller: 'IndexController'
+        });
+
         // routeProvider LOJA
         $routeProvider.when('/lojas', {
             templateUrl: 'partials/loja/lojas.html',
