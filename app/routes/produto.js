@@ -17,6 +17,13 @@ module.exports = function (app) {
     app.route('/lojas/uploadFotoProduto')
         .post(verificaAutenticacao, controller.uploadFotoProduto);
 
+    //Route para Index sem login
+    app.route('/produtosIndex')
+        .get(controller.listaProdutosIndex);
+
+    app.route('/produtosIndex/:id')
+        .get(controller.obtemProduto);
+
     // app.route('/produtos')
     //     .get(controller.listaProdutos)
     //     .post(controller.salvaProduto);

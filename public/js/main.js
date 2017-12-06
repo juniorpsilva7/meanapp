@@ -11,6 +11,11 @@ angular.module('meanapp1', ['ngRoute', 'ngResource', 'ngFileUpload'])
             controller: 'IndexController'
         });
 
+        $routeProvider.when('/produtosIndex/:produtoId', {
+            templateUrl: 'partials/index/main_index.html',
+            controller: 'IndexController'
+        });
+
         // routeProvider LOJA
         $routeProvider.when('/lojas', {
             templateUrl: 'partials/loja/lojas.html',

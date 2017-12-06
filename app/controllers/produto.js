@@ -27,6 +27,21 @@ module.exports = function (app) {
             );
     };
 
+    controller.listaProdutosIndex = function (req, res) {
+        console.error('passou aqui 1');
+        Produto.find().exec()
+            .then(
+            function (produtos) {
+                console.error('passou aqui 2');
+                res.json(produtos);
+            },
+            function (erro) {
+                console.error(erro);
+                res.status(500).json(erro);
+            }
+            );
+    };
+
     controller.obtemProduto = function (req, res) {
         var _id = req.params.id;
         Produto.findById(_id).exec()
