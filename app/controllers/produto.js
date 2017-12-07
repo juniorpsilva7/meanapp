@@ -28,11 +28,9 @@ module.exports = function (app) {
     };
 
     controller.listaProdutosIndex = function (req, res) {
-        console.error('passou aqui 1');
         Produto.find().exec()
             .then(
             function (produtos) {
-                console.error('passou aqui 2');
                 res.json(produtos);
             },
             function (erro) {
@@ -127,9 +125,10 @@ module.exports = function (app) {
         var dados = {
             "nome": req.body.nome,
             "descricao": req.body.descricao,
-            "prodLoja": req.body.prodLoja || null,
+            "prodLoja": req.body.prodLoja,
             "usuario": userId,
-            "foto": pathFotoLoja
+            "foto": pathFotoLoja,
+            "preco": req.body.preco
         };
 
         if (_id) {

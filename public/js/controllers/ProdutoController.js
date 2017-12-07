@@ -19,6 +19,7 @@ angular.module('meanapp1').controller('ProdutoController',
             // modo adicionar novo produto em uma loja
         } else if ($routeParams.lojaId) {
             $scope.produto = new Produto();
+            $scope.produto.preco = 0;
             $scope.produto.prodLoja = $routeParams.lojaId;
             getLoja($routeParams.lojaId);
 
@@ -39,6 +40,7 @@ angular.module('meanapp1').controller('ProdutoController',
                         $scope.mensagem = { texto: 'Salvo com Sucesso' };
                         //limpa o formulário
                         $scope.produto = new Produto();
+                        $scope.produto.preco = 0;
                         $scope.produto.prodLoja = $routeParams.lojaId;
                     })
                     .catch(function (erro) {
