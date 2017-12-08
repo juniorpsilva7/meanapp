@@ -23,6 +23,9 @@ module.exports = function(){
         foto: {
             type: String,
             required: true
+        },
+        DBFotoUpdate: { //usado para quando for trocar imagem, deletar a imagem antiga do banco
+            type: String // será sempre igual ao campo foto, diferente só quando trocar
         }
     });
 

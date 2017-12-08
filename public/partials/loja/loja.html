@@ -4,22 +4,24 @@
     {{mensagem.texto}}
 </p>
 <form ng-submit="salva()" name="loja_form">
-    <!-- <input 
-        type="file" 
-        ngf-select 
-        ng-model="loja.foto" 
-        name="foto" 
-        ngf-pattern="'image/*'"
-        accept="image/*" 
-        ngf-max-size="20MB" 
-    /> -->
-    <div class="form-group">
+
+    <!-- <div class="form-group">
     <button class="button btn-warning">
         <input type="file" ngf-select ng-model="loja.foto" name="foto" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB"
             ngf-min-height="100" ngf-resize="{width: 100, height: 100}" />
     </button><br/><br/>
     Image thumbnail:<br/>
     <img style="width:100px;" ng-show="!!loja.foto" ngf-thumbnail="loja.foto || '/thumb.jpg'" />
+    </div> -->
+
+    <div class="form-group">
+        <label class="btn btn-primary" for="fotoLoja">
+            <input type="file" ngf-select ng-model="loja.foto" name="foto" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB"
+                ngf-min-height="100" ngf-resize="{width: 100, height: 100}" id="fotoLoja" style="display:none;"/>Escolher Foto
+        </label><br/><br/>
+        Image thumbnail:<br/>
+        <!-- <img style="width:100px;" ng-show="!!loja.foto" ngf-thumbnail="loja.foto || '/images/lojas/thumb.jpg'" /> -->
+        <img style="width:100px;" ng-show="!!loja.foto" ngf-thumbnail="loja.foto" />
     </div>
 
     <div class="form-group">
@@ -39,9 +41,15 @@
         ng-model="loja.afiliada" 
         ng-options="loja._id as loja.nome for loja in lojas"></select>
     </div> -->
-    <div class="form-group">
+
+    <!-- <div class="form-group">
         <input ng-disabled="true" ng-hide="false" type="text" id="usuario" name="usuario" class="form-control" ng-model="loja.usuario">
+    </div> -->
+
+    <div class="form-group">
+        <input ng-disabled="true" ng-hide="false" type="text" id="DBFotoUpdate" name="DBFotoUpdate" class="form-control" ng-model="loja.DBFotoUpdate">
     </div>
+    
     <div>
         <button type="submit" class="btn btn-primary">Salvar</button>
         <a href="#/lojas" class="btn btn-default">Voltar</a>

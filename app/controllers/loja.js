@@ -46,20 +46,9 @@ module.exports = function (app) {
         var _id = sanitize(req.params.id);
         var pathLojaFotoDel;
 
-        function removeFotoLoja(){
-            //console.log('... TESTE 2 ' + JSON.stringify(pathLojaFotoDel));
-            fs.unlink("./public"+pathLojaFotoDel, (err) => {
-                if (err) {
-                    console.log("failed to delete local image:"+err);
-                } else {
-                    console.log('successfully deleted local image');                                
-                }
-        });
-        }
-
         Loja.findOne({_id:_id}, function(err, loja){
             pathLojaFotoDel = loja.foto;
-            removeFotoLoja();
+            removeFotoLoja(pathLojaFotoDel);
         });
 
         Loja.remove({ "_id": _id }).exec()
@@ -73,50 +62,28 @@ module.exports = function (app) {
             );
     };
 
-    // ================= UPLOAD IMAGE API
-    var storage = multer.diskStorage({ //multers disk storage settings
-        destination: function (req, file, cb) {
-            cb(null, diretorioFotos);
-        },
-        filename: function (req, file, cb) {
-            var datetimestamp = Date.now();
-            var storageNomeFoto = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1];
-            nomeFoto = storageNomeFoto;
-            cb(null, storageNomeFoto);
-        }
-    });
-
-    var upload = multer({ //multer settings
-        storage: storage
-    }).single('file');
-
-    controller.uploadFotoLoja = function (req, res) {
-        upload(req, res, function (err) {
-            if (err) {
-                console.log(err);
-                res.json({ error_code: 1, err_desc: err });
-                return;
-            }
-            res.json({ error_code: 0, err_desc: null });
-        });
-    };
-    // ================= UPLOAD IMAGE API
-
     controller.salvaLoja = function (req, res) {
         var _id = req.body._id;
         var userId = req.user._id;
         var pathFotoLoja = "/images/lojas/" + nomeFoto;
+        var DBFotoUpdate = req.body.DBFotoUpdate;
+        
+        if(DBFotoUpdate != null && (DBFotoUpdate!=pathFotoLoja)){ // verifica se a foto foi trocada para apagar a antiga
+            removeFotoLoja(DBFotoUpdate);
+        }
 
         var dados = {
             "nome": req.body.nome,
             "email": req.body.email,
             "usuario": userId,
-            "foto": pathFotoLoja
+            "foto": pathFotoLoja,
+            "DBFotoUpdate": pathFotoLoja
         };
 
         if (_id) {
             Loja.findByIdAndUpdate(_id, dados).exec()
                 .then(function (loja) {
+
                     res.json(loja);
                 },
                 function (erro) {
@@ -137,6 +104,52 @@ module.exports = function (app) {
                 );
         }
     };
+
+    //**************************** HELP FUNCTIONS **************************** 
+    //========================================================================
+
+        function removeFotoLoja(pathLojaFotoDel){
+            //console.log('... TESTE 2 ' + JSON.stringify(pathLojaFotoDel));
+            fs.unlink("./public"+pathLojaFotoDel, (err) => {
+                if (err) {
+                    console.log("failed to delete local image:"+err);
+                } else {
+                    console.log('successfully deleted local image');                                
+                }
+        });
+        }
+
+        // ================= UPLOAD IMAGE API Environment
+        var storage = multer.diskStorage({ //multers disk storage settings
+            destination: function (req, file, cb) {
+                cb(null, diretorioFotos);
+            },
+            filename: function (req, file, cb) {
+                var datetimestamp = Date.now();
+                var storageNomeFoto = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1];
+                nomeFoto = storageNomeFoto;
+                cb(null, storageNomeFoto);
+            }
+        });
+
+        var upload = multer({ //multer settings
+            storage: storage
+        }).single('file');
+
+        controller.uploadFotoLoja = function (req, res) {
+            upload(req, res, function (err) {
+                if (err) {
+                    console.log(err);
+                    res.json({ error_code: 1, err_desc: err });
+                    return;
+                }
+                res.json({ error_code: 0, err_desc: null });
+            });
+        };
+        // ================= UPLOAD IMAGE API
+
+    //********************************* END  ********************************* 
+    //========================================================================
 
     return controller;
 };

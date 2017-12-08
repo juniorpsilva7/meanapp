@@ -41,7 +41,7 @@ module.exports = function(){
     function getPreco(val) {
         newVal = (val / 100).toFixed(2); // preco com duas casas decimais
         newVal = newVal.replace(".", ","); // trocar ponto por vírgula (formato Brasil)
-        newVal = "R$ " + formatPreco(newVal); // colocar um ponto a cada 3 digitos nos inteiros (ex 1.300,99) e R$ no começo
+        newVal = formatPreco(newVal); // colocar um ponto a cada 3 digitos nos inteiros (ex 1.300,99) e R$ no começo
         return newVal;
     }
     function setPreco(val) {    return val * 100; }
