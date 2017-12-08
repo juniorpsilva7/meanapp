@@ -31,9 +31,9 @@ angular.module('meanapp1').controller('ProdutoController',
 
         //função para o submit do form
         $scope.salva = function () {
-            if ($scope.produto_form.foto.$valid && $scope.produto.foto) {
+            if ($scope.produto_form.fotos.$valid && $scope.produto.fotos) {
 
-                uploadFotoProduto($scope.produto.foto);
+                uploadFiles($scope.produto.fotos);
 
                 $scope.produto.$save()
                     .then(function () {
@@ -68,6 +68,15 @@ angular.module('meanapp1').controller('ProdutoController',
         // Loja.query(function(lojas){
         //     $scope.lojas = lojas;
         // });
+
+        //Upload for multiple files
+        function uploadFiles(files){
+            if(files && files.length){
+                for (var i=0; i< files.length; i++){
+                    uploadFotoProduto(files[i]);
+                }
+            }
+        }
 
         // upload on file select or drop
         function uploadFotoProduto(file) {

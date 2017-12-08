@@ -104,6 +104,8 @@ module.exports = function (app) {
         storage: storage
     }).single('file');
 
+    // ================= UPLOAD IMAGE API
+
     controller.uploadFotoProduto = function (req, res) {
         upload(req, res, function (err) {
             if (err) {
@@ -114,13 +116,12 @@ module.exports = function (app) {
             res.json({ error_code: 0, err_desc: null });
         });
     };
-    // ================= UPLOAD IMAGE API
 
     controller.salvaProduto = function (req, res) {
         var _id = req.body._id;
         var userId = req.user._id;
-        console.log(req.body.prodLoja);
         var pathFotoLoja = "/images/produtos/" + nomeFoto;
+        console.log(pathFotoLoja);
 
         var dados = {
             "nome": req.body.nome,

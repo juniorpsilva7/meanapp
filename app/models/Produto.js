@@ -23,7 +23,7 @@ module.exports = function(){
             required: true
         },
         foto: {
-            type: String,
+            type: [String],
             required: true
         },
         preco: {
