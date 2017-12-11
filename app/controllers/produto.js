@@ -59,22 +59,11 @@ module.exports = function (app) {
     controller.removeProduto = function (req, res) {
         var _id = sanitize(req.params.id);
 
-        var pathProdutoFotoDel;
-
-        function removeFotoProduto() {
-            //console.log('... TESTE 2 ' + JSON.stringify(pathProdutoFotoDel));
-            fs.unlink("./public" + pathProdutoFotoDel, (err) => {
-                if (err) {
-                    console.log("failed to delete local image:" + err);
-                } else {
-                    console.log('successfully deleted local image');
-                }
-            });
-        }
+        var pathProdutoFotoDel;        
 
         Produto.findOne({ _id: _id }, function (err, produto) {
-            pathProdutoFotoDel = produto.foto;
-            removeFotoProduto();
+            pathProdutoFotoDel = produto.foto; //string de fotos
+            removeFotoProduto(pathProdutoFotoDel);
         });
 
         Produto.remove({ "_id": _id }).exec()
@@ -158,6 +147,26 @@ module.exports = function (app) {
                 );
         }
     };
+
+    //**************************** HELP FUNCTIONS **************************** 
+    //========================================================================
+
+    function removeFotoProduto(pathLojaFotoDel) {
+        //console.log('... TESTE 2 ' + JSON.stringify(pathProdutoFotoDel));
+        pathLojaFotoDel.forEach(foto => {
+            fs.unlink("./public" + foto, (err) => {
+                if (err) {
+                    console.log("failed to delete local image:" + err);
+                } else {
+                    console.log('successfully deleted local image');
+                }
+            });            
+        });
+
+    }
+
+    //***************************** END HELPSET  ***************************** 
+    //========================================================================
 
     return controller;
 };
