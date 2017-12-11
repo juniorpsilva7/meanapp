@@ -11,6 +11,7 @@ module.exports = function (app) {
     var controller = {};
 
     var nomeFoto = '';
+    var strPathFoto = [];
     var diretorioFotos = './public/images/produtos/';
 
     controller.listaProdutos = function (req, res) {
@@ -95,18 +96,20 @@ module.exports = function (app) {
         filename: function (req, file, cb) {
             var datetimestamp = Date.now();
             var storageNomeFoto = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1];
-            nomeFoto = storageNomeFoto;
+            strPathFoto[strPathFoto.length] = "/images/produtos/" + storageNomeFoto;
+            //strPathFoto[i] = "/images/produtos/" + storageNomeFoto;
             cb(null, storageNomeFoto);
         }
     });
 
     var upload = multer({ //multer settings
         storage: storage
-    }).single('file');
+    }).array('files', 3);
 
     // ================= UPLOAD IMAGE API
 
     controller.uploadFotoProduto = function (req, res) {
+        strPathFoto = [];
         upload(req, res, function (err) {
             if (err) {
                 console.log(err);
@@ -120,15 +123,15 @@ module.exports = function (app) {
     controller.salvaProduto = function (req, res) {
         var _id = req.body._id;
         var userId = req.user._id;
-        var pathFotoLoja = "/images/produtos/" + nomeFoto;
-        console.log(pathFotoLoja);
+        //var pathFotoLoja = "/images/produtos/";// + nomeFoto;
+        //console.log(pathFotoLoja);
 
         var dados = {
             "nome": req.body.nome,
             "descricao": req.body.descricao,
             "prodLoja": req.body.prodLoja,
             "usuario": userId,
-            "foto": pathFotoLoja,
+            "foto": strPathFoto,
             "preco": req.body.preco
         };
 
