@@ -62,7 +62,7 @@ module.exports = function (app) {
         var pathProdutoFotoDel;        
 
         Produto.findOne({ _id: _id }, function (err, produto) {
-            pathProdutoFotoDel = produto.foto; //string de fotos
+            pathProdutoFotoDel = produto.fotos; //string de fotos
             removeFotoProduto(pathProdutoFotoDel);
         });
 
@@ -120,7 +120,7 @@ module.exports = function (app) {
             "descricao": req.body.descricao,
             "prodLoja": req.body.prodLoja,
             "usuario": userId,
-            "foto": strPathFoto,
+            "fotos": strPathFoto,
             "preco": req.body.preco
         };
 

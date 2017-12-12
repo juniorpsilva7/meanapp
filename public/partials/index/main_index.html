@@ -9,7 +9,7 @@
   <div class="card-deck">
 
     <div class="card" ng-repeat="produto in produtos">
-      <img class="card-img-top" src="{{produto.foto}}" alt="Card image cap" border=3 height=200 width=320>
+      <img class="card-img-top" src="{{produto.fotos[0]}}" alt="Card image cap" border=3 height=200 width=320>
       <div class="card-block">
         <h4 class="card-title">{{produto.nome}}</h4>
         <p class="card-text">{{produto.descricao}}</p>

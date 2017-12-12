@@ -22,7 +22,7 @@ module.exports = function(){
             ref: 'Usuario',
             required: true
         },
-        foto: {
+        fotos: {
             type: [String],
             required: true
         },

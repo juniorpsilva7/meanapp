@@ -29,8 +29,10 @@
             <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
         </span>
         {{errorMsg}}
-        <!-- Image thumbnail:<br/>
-        <img style="width:150px;" ng-show="!!produto.foto" ngf-thumbnail="produto.foto || '/thumb.jpg'" /> -->
+        Image thumbnail:<br/>
+        <div class="card-group">
+            <img ng-repeat="foto in produto.fotos" style="width:100px;" ng-show="!!foto" ngf-thumbnail="foto || '/thumb.jpg'" />
+        </div>
     </div><br/>
 
     <div class="form-group">
