@@ -36,19 +36,21 @@
         </div>
     </div>
     <!-- <div class="form-group">
-        <label for="afiliada">Afiliada</label>
-        <select id="afiliada" class="form-control" 
-        ng-model="loja.afiliada" 
-        ng-options="loja._id as loja.nome for loja in lojas"></select>
-    </div> -->
+            <label for="endereco">Cidade</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="endereco" name="endereco" ng-model="loja.endereco" required>
+            </div>
+        </div> -->
 
-    <!-- <div class="form-group">
-        <input ng-disabled="true" ng-hide="false" type="text" id="usuario" name="usuario" class="form-control" ng-model="loja.usuario">
-    </div> -->
 
+
+
+
+    <!-- HIDE FIELDS -->
     <div class="form-group">
-        <input ng-disabled="true" ng-hide="false" type="text" id="DBFotoUpdate" name="DBFotoUpdate" class="form-control" ng-model="loja.DBFotoUpdate">
+        <input ng-disabled="true" ng-hide="true" type="text" id="DBFotoUpdate" name="DBFotoUpdate" class="form-control" ng-model="loja.DBFotoUpdate">
     </div>
+    <!-- END HIDE FIELDS -->
     
     <div>
         <button type="submit" class="btn btn-primary">Salvar</button>
