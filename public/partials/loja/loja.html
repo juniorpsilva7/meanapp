@@ -5,15 +5,6 @@
 </p>
 <form ng-submit="salva()" name="loja_form">
 
-    <!-- <div class="form-group">
-    <button class="button btn-warning">
-        <input type="file" ngf-select ng-model="loja.foto" name="foto" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB"
-            ngf-min-height="100" ngf-resize="{width: 100, height: 100}" />
-    </button><br/><br/>
-    Image thumbnail:<br/>
-    <img style="width:100px;" ng-show="!!loja.foto" ngf-thumbnail="loja.foto || '/thumb.jpg'" />
-    </div> -->
-
     <div class="form-group">
         <label class="btn btn-primary" for="fotoLoja">
             <input type="file" ngf-select ng-model="loja.foto" name="foto" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="1MB"
@@ -29,21 +20,25 @@
         <input type="text" class="form-control" id="nome" name="nome" required ng-model="loja.nome">
     </div>
     <div class="form-group">
+        <label for="cnpj">CNPJ</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="cnpj" name="cnpj" ng-model="loja.cnpj" required>
+        </div>
+    </div>
+    <label for="logradouro">Logradouro:</label>
+    <input type="text" id="logradouro"/>
+    
+    <label for="numero">Numero:</label>
+    <input type="text" id="numero" />
+
+    <div class="form-group">
         <label for="email">Email</label>
         <div class="input-group">
             <span class="input-group-addon">@</span>
             <input type="email" class="form-control" id="email" placeholder="email@exemplo.com" name="email" ng-model="loja.email" required>
         </div>
     </div>
-    <!-- <div class="form-group">
-            <label for="endereco">Cidade</label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="endereco" name="endereco" ng-model="loja.endereco" required>
-            </div>
-        </div> -->
-
-
-
+    
 
 
     <!-- HIDE FIELDS -->

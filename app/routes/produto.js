@@ -14,7 +14,7 @@ module.exports = function (app) {
         .get(verificaAutenticacao, controller.obtemProduto)
         .delete(verificaAutenticacao, controller.removeProduto);
 
-    app.route('/lojas/uploadFotoProduto')
+    app.route('/produtos/uploadFotoProduto')
         .post(verificaAutenticacao, controller.uploadFotoProduto);
 
     //Route para Index sem login

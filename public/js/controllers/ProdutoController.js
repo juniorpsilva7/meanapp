@@ -97,7 +97,7 @@ angular.module('meanapp1').controller('ProdutoController',
             $scope.files = files;
             if (files && files.length) {
                 Upload.upload({
-                    url: 'http://localhost:3000/lojas/uploadFotoProduto',
+                    url: '/produtos/uploadFotoProduto',
                     arrayKey: '', // default is '[i]'
                     data: {
                         files: files

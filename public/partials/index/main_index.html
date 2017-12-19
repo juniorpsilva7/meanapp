@@ -7,18 +7,18 @@
 <br/>
 
 <div class="jumbotron">
-  <h4 class="text-center">Para uma melhor experiência em nosso site, selecione sua cidade para ver as melhores ofertas perto de você</h4>
-  <form ng-submit="selecionaCidade()" name="cidadeForm">
+  <h4 class="text-center">Selecione sua cidade para ver as melhores ofertas perto de você</h4><br/>
+  <form name="cidadeForm">
     <div class="form-group">
       <label for="cidade">
         <h5 class="text-center">Cidade</h5>
       </label>
-      <input ng-model="filtro2" type="search" placeholder="Parte do nome">
-      <select id="selectCidade" class="form-control" ng-model="filtro" ng-options="cidade._id as cidade.nome for cidade in cidades"></select>
+      <!-- <input ng-model="filtro2" type="search" placeholder="Parte do nome"> -->
+      <select id="selectCidade" class="form-control" ng-model="cidade" ng-options="cidade.codigo as cidade.nomeCidade for cidade in todasCidades"></select>
     </div>
 
     <div>
-      <button type="submit" class="btn btn-primary">Ir</button>
+      <button ng-click="selecionaCidade()" type="submit" class="btn btn-primary">Ir</button>
     </div>
   </form>
 </div>

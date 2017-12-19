@@ -1,7 +1,7 @@
 // public/js/controller/LojaControlle.js
 
 angular.module('meanapp1').controller('LojaController',
-    function ($scope, $routeParams, Loja, Upload, $window) {
+    function ($scope, $routeParams, Loja, Upload, $window, $http) {
 
         if ($routeParams.lojaId) {
             Loja.get({ id: $routeParams.lojaId },
@@ -21,6 +21,7 @@ angular.module('meanapp1').controller('LojaController',
         $scope.salva = function () {
             if ($scope.loja_form.foto.$valid && $scope.loja.foto) {
 
+                getCnpj($scope.loja.cnpj);
                 uploadFotoLoja($scope.loja.foto);
 
                 $scope.loja.$save()
@@ -45,7 +46,7 @@ angular.module('meanapp1').controller('LojaController',
         // upload on file select or drop
         function uploadFotoLoja (file) {
             Upload.upload({
-                url: 'http://localhost:3000/lojas/uploadFotoLoja',
+                url: '/lojas/uploadFotoLoja',
                 data: { file: file}
             }).then(function (resp) {
                 console.log('Success ' + resp.config.data.file.name + ' uploaded. Response: ' + resp.data);

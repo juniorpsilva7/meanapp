@@ -74,6 +74,7 @@ module.exports = function (app) {
 
         var dados = {
             "nome": req.body.nome,
+            "cnpj": req.body.cnpj,
             "email": req.body.email,
             "usuario": userId,
             "foto": pathFotoLoja,

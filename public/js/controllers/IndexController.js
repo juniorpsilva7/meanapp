@@ -1,7 +1,7 @@
 // public/js/Controllers/IndexController.js
 
 angular.module('meanapp1').controller('IndexController',
-function ($scope, ProdutosIndex, $http ) {
+function ($scope, ProdutosIndex, $http, $routeParams ) {
 
     $scope.produtos = [];
     
@@ -9,16 +9,13 @@ function ($scope, ProdutosIndex, $http ) {
 
     $scope.mensagem = { texto: '' };
 
-    $scope.selecionaCidade = function() {
+    function listaCidade() {
         var todasCidades = [];
-        $scope.cidade = 'TESTE';
         // $scope.mensagem = {texto: 'Você selecionou a cidade ' +  $scope.cidade};
         var request = $http({
             method: 'GET',
             url: '/cidades'
           }).then(function successCallback(response) {
-                $scope.mensagem = { texto: "Foi posível obter a lista de Cidades" };
-                // console.log(response.data[0].cidades[0].nome_municipio);
                 var dados = response.data;
                 var UF;
                 var nomeCidade;
@@ -30,22 +27,32 @@ function ($scope, ProdutosIndex, $http ) {
 
                     for(var j = 0; j < arrayCidades.length; j++){
                         objCidade = [];
+                        objCidade.codigo = arrayCidades[j].codigo_ibge;
                         objCidade.UF = UF;
                         objCidade.nomeCidade = arrayCidades[j].nome_municipio;
                         todasCidades.push(objCidade);
                     }
                 });
-                console.log(todasCidades);
+                $scope.todasCidades = todasCidades;
+                // console.log(todasCidades);
 
             }, function errorCallback(response) {
                 $scope.mensagem = { texto: "Não foi posível obter a lista de Cidades" };
             });
     };
+    listaCidade();
+
+    $scope.selecionaCidade = function (){
+        // cidadeSelecionada = $routeParams.cidade.codigo;
+        // console.log("Você escolheu "+ cidadeSelecionada);
+        console.log($scope.cidade);
+        buscaProdutosIndex();
+    }
 
     function buscaProdutosIndex() {
         ProdutosIndex.query(function (produtos) {
             $scope.produtos = produtos;
-            $scope.mensagem = {texto: 'Produtos Carregados'};
+            //$scope.mensagem = {texto: 'Produtos Carregados'};
         },
             function (erro) {
                 console.log(erro);
@@ -54,6 +61,6 @@ function ($scope, ProdutosIndex, $http ) {
         );
 
     };
-    buscaProdutosIndex();
+    
 
 });

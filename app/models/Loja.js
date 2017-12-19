@@ -8,6 +8,10 @@ module.exports = function(){
             type: String,
             required: true
         },
+        cnpj: {
+            type: String,
+            required: true
+        },
         email: {
             type: String,
             required: true,
