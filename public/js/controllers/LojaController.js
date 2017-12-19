@@ -21,7 +21,6 @@ angular.module('meanapp1').controller('LojaController',
         $scope.salva = function () {
             if ($scope.loja_form.foto.$valid && $scope.loja.foto) {
 
-                getCnpj($scope.loja.cnpj);
                 uploadFotoLoja($scope.loja.foto);
 
                 $scope.loja.$save()
