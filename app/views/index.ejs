@@ -8,13 +8,20 @@
   <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
   <!-- <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.css"> -->
 </head>
-
+<style>
+body > .container {
+  padding: 60px 15px 0;
+}
+</style>
 
 <body class="container">
+    <header>
+        <% include ./layout/header %>
+    </header>
 
-  <% include ./layout/header %>
-
-    <!-- <h1>Index Liberada</h1> -->
+    <!-- Begin Content -->
+    <main role="main" class="container">
+        <div class="mt-3">
 
     <%if (usuarioLogado.length > 0) { %>
       <div class="text-right">
@@ -25,6 +32,8 @@
     <% } %>
 
     <div ng-view></div>
+    </main>
+    <!-- END Content -->
 
     <!-- INCLUDE SCRIPTS -->
     <script src="vendor/angular/angular.js"></script>
