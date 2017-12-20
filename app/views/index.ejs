@@ -9,12 +9,28 @@
   <!-- <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.css"> -->
 </head>
 <style>
-body > .container {
-  padding: 70px 15px 0;
+  /* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
 }
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+
 </style>
 
-<body class="container">
+<body class="container-fluid">
     <header>
         <% include ./layout/header %>
     </header>
