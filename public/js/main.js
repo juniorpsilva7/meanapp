@@ -58,6 +58,11 @@ angular.module('meanapp1', ['ngRoute', 'ngResource', 'ngFileUpload'])
             templateUrl: 'partials/auth.html'
         });
 
+        $routeProvider.when('/newAccount', {
+            templateUrl: 'partials/newAccount.html',
+            controller: 'AccountController'
+        });
+
         // rota alternativa caso não encontre a digitada
         $routeProvider.otherwise({ redirectTo: '/index' });
 

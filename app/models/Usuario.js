@@ -19,6 +19,9 @@ module.exports = function(){
         inclusao: {
             type: Date,
             default: Date.now
+        },
+        email: {
+            type: String
         }
     });
     schema.plugin(findOrCreate);

@@ -3,6 +3,9 @@
 var passport = require('passport');
 
 module.exports = function(app){
+    
+    var controller = app.controllers.usuario;
+
     app.get('/auth/github', passport.authenticate('github'));
     app.get('/auth/github/callback', 
             passport.authenticate('github', {
@@ -20,4 +23,10 @@ module.exports = function(app){
             passport.authenticate('facebook', {
                 successRedirect: '/#/lojas'
             }));
+
+    app.route('/auth/newAccount')
+        .post(controller.salvaUsuario);
+
+    app.route('/auth/newAccount/:id')
+        .delete(controller.removeUsuario);
 }
