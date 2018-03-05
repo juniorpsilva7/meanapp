@@ -27,7 +27,8 @@ module.exports = function (app) {
         var dados = {
             "login": req.body.nome,
             "nome": req.body.nome,
-            "email": req.body.email
+            "email": req.body.email,
+            "senha": req.body.senha
         };
 
         if (_id) {

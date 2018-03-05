@@ -22,6 +22,9 @@ module.exports = function(){
         },
         email: {
             type: String
+        },
+        senha: {
+            type: String
         }
     });
     schema.plugin(findOrCreate);
