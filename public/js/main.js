@@ -55,7 +55,8 @@ angular.module('meanapp1', ['ngRoute', 'ngResource', 'ngFileUpload'])
 
         // routeProvider AUTH
         $routeProvider.when('/auth', {
-            templateUrl: 'partials/auth.html'
+            templateUrl: 'partials/auth.html',
+            controller: 'AccountController'
         });
 
         $routeProvider.when('/newAccount', {

@@ -1,7 +1,7 @@
 // public/js/controller/AccountController.js
 
 angular.module('meanapp1').controller('AccountController',
-    function ($scope, $routeParams, Usuario, $http) {
+    function ($scope, $routeParams, Usuario, $http, $location) {
 
         $scope.mensagem = { texto: '' };
 
@@ -32,6 +32,27 @@ angular.module('meanapp1').controller('AccountController',
                 $scope.mensagem = { texto: 'Não foi possível salvar' };
             });
             
+        };
+
+        $scope.login = function(){
+
+            console.log("....EMAIL: "+$scope.usuario.email+" SENHA: "+$scope.usuario.password);
+            
+            $http({
+                method:"post",
+                url:'/auth/local',
+                data:{username: $scope.usuario.email, password: $scope.usuario.password},
+            }).success(function(response){
+                $scope.user = response;
+                // $localStorage.userData = $scope.userData; 
+                console.log("success!!");
+                // $location.path("/profile")
+                $location.path("/index")
+            }).error(function(response){
+                console.log("error!!");
+                $location.path("/auth")
+            });
+
         };
 
     });

@@ -3,6 +3,7 @@
 var passport = require('passport');
 var GitHubStrategy = require('passport-github').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
+var LocalStrategy   = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 
 module.exports = function(){
@@ -49,6 +50,33 @@ module.exports = function(){
         );
 
     }));
+
+    passport.use(new LocalStrategy(
+        function(username, senha, done) {
+            console.log(username);
+            console.log(senha);
+            Usuario.findOne({
+              email: username
+            }, function(err, usuario) {
+              console.log(usuario);
+              if (err) {
+                return done(err);
+              }
+      
+              if (!usuario) {
+                return done(null, false);
+              }
+      
+              if (usuario.senha != senha) {
+                console.log("senha diferente");
+                return done(null, false);
+              }
+              console.log("OK!!!");
+              return done(null, usuario);
+            });
+        }
+      ));
+
 
     passport.serializeUser(function(usuario, done){
         done(null, usuario._id);

@@ -21,7 +21,11 @@ module.exports = function(){
             default: Date.now
         },
         email: {
-            type: String
+            type: String,
+            required: true,
+            index: {
+                unique: true
+            }
         },
         senha: {
             type: String
