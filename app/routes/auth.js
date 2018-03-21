@@ -22,9 +22,10 @@ module.exports = function(app){
 
     app.post('/auth/local', passport.authenticate('local', { failureRedirect: '/error' }),
     function(req, res) {
-    //   res.redirect('/success?username='+req.user.username);
-    // res.send(req.user);
-    res.render('index', {"usuarioLogado" : req.user.login});
+    // res.redirect('/success?username='+req.user.username);
+    res.send(req.user);
+    // res.redirect('/');
+    // res.render('index', {"usuarioLogado" : req.user.login});
     // console.log(req.user);
     // res.redirect('/#/lojas');
     });

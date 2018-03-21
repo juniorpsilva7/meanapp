@@ -1,7 +1,7 @@
 // public/js/controller/AccountController.js
 
 angular.module('meanapp1').controller('AccountController',
-    function ($scope, $routeParams, Usuario, $http, $location) {
+    function ($scope, $routeParams, Usuario, $http, $location, $window) {
 
         $scope.mensagem = { texto: '' };
 
@@ -45,12 +45,15 @@ angular.module('meanapp1').controller('AccountController',
             }).success(function(response){
                 $scope.user = response;
                 // $localStorage.userData = $scope.userData; 
-                console.log("success!!");
+                console.log("success!!" + $scope.user.login);
                 // $location.path("/profile")
-                $location.path("/index")
+                $location.path("/index");
+                $window.location.reload();
             }).error(function(response){
                 console.log("error!!");
-                $location.path("/auth")
+                $location.path("/auth");
+                $scope.mensagem = { texto: 'Falha no login, usuário ou senha inválidos' };
+                $scope.alert = { type: 'alert alert-danger'};
             });
 
         };
