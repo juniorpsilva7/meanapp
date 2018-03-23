@@ -5,8 +5,8 @@ angular.module('meanapp1').controller('AccountController',
 
         $scope.mensagem = { texto: '' };
 
-        if ($routeParams.userId) {
-            Usuario.get({ id: $routeParams.userId },
+        if ($routeParams.usuarioId) {
+            Usuario.get({ id: $routeParams.usuarioId },
                 function (usuario) {
                     $scope.usuario = usuario;
                 },

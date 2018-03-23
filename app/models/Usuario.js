@@ -13,8 +13,8 @@ module.exports = function(){
             }
         },
         nome: {
-            type: String,
-            required: true
+            type: String
+            // required: true
         },
         inclusao: {
             type: Date,

@@ -91,7 +91,7 @@
             <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
                 <label for="email">Email</label>
                 <input type="text" name="email" id="email" class="form-control" ng-model="usuario.email" required />
-                <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email is required</span>
+                <span ng-show="form.email.$dirty && form.email.$error.required" class="text-danger">Campo obrigatório</span>
             </div>
             </div>
         </div>
@@ -102,7 +102,7 @@
             <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
                 <label for="password">Senha</label>
                 <input type="password" name="password" id="password" class="form-control" ng-model="usuario.password" required />
-                <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+                <span ng-show="form.password.$dirty && form.password.$error.required" class="text-danger">Campo obrigatório</span>
             </div>
             </div>
         </div>

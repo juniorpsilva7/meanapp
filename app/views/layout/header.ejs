@@ -9,6 +9,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto" ng-controller="UtilController">
+      <li class="nav-item">
+        <a class="nav-link" href="#/index">Principal</a>
+      </li>
       <li class="nav-item { active: isCurrentPath('/lojas') }">
         <a class="nav-link" href="#/lojas">Lojas</a>
       </li>
@@ -36,11 +39,15 @@
           Entrar
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#/auth">Login</a>
-          <a class="dropdown-item" href="#/newAccount">Cadastrar</a>
-          <%if (usuarioLogado.length > 0) { %>
-          <a class="dropdown-item" href="/logout">Sair</a>
+          <%if (!usuarioLogado) { %>
+            <a class="dropdown-item" href="#/auth">Login</a>
+            <a class="dropdown-item" href="#/newAccount">Cadastrar</a>
+
+          <% } else { %>
+            <a class="dropdown-item" href="#/minhaConta/<%=usuarioId %>"</a>Minha Conta</a>
+            <a class="dropdown-item" href="/logout">Sair</a>
           <% } %>
+
         </div>
       </li>
     </ul>

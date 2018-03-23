@@ -1,0 +1,33 @@
+<!-- partials/minhaconta.html -->
+<h1 class="text-center">Minha Conta</h1>
+<p ng-show="mensagem.texto">
+    {{mensagem.texto}}
+</p>
+<form ng-submit="salva()" name="minhaConta_form">
+
+    <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" required ng-model="usuario.nome">
+    </div>
+
+    <!-- <label for="logradouro">Logradouro:</label>
+    <input type="text" id="logradouro"/>
+    
+    <label for="numero">Numero:</label>
+    <input type="text" id="numero" /> -->
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-group">
+            <span class="input-group-addon">@</span>
+            <input type="email" class="form-control" id="email" placeholder="email@exemplo.com" name="email" ng-model="usuario.email" required>
+        </div>
+    </div>
+
+    
+    <div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="#/index" class="btn btn-default">Voltar</a>
+        <!-- <button ng-click="remove(loja)" class="btn btn-warning">Remover</button> -->
+    </div>
+</form>

@@ -1,6 +1,7 @@
 // app/routes/auth.js
 
 var passport = require('passport');
+var verificaAutenticacaoGetUser = require('../utils/verificaAutenticacaoGetUser');
 
 module.exports = function(app){
     
@@ -38,6 +39,9 @@ module.exports = function(app){
     app.route('/auth/newAccount')
         .post(controller.salvaUsuario);
 
-    app.route('/auth/newAccount/:id')
+    app.route('/auth/getUsuario/:id')
+        .get(verificaAutenticacaoGetUser, controller.obtemUsuario);
+
+    app.route('/auth/removeUser/:id')
         .delete(controller.removeUsuario);
 }

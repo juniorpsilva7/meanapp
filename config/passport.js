@@ -39,7 +39,8 @@ module.exports = function(){
 
         Usuario.findOrCreate(
             { "login" : profile.emails[0].value },
-            { "nome" : profile.emails[0].value },
+            { "email" : profile.emails[0].value },
+            { "nome" : profile.name.givenName + " " + profile.name.familyName },
             function(erro, usuario){
                 if(erro){
                     console.log(erro);

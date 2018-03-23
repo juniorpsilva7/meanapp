@@ -64,6 +64,11 @@ angular.module('meanapp1', ['ngRoute', 'ngResource', 'ngFileUpload'])
             controller: 'AccountController'
         });
 
+        $routeProvider.when('/minhaConta/:usuarioId', {
+            templateUrl: 'partials/minhaConta.html',
+            controller: 'AccountController'
+        });
+
         // rota alternativa caso não encontre a digitada
         $routeProvider.otherwise({ redirectTo: '/index' });
 
