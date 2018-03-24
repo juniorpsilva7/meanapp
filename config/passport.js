@@ -36,11 +36,14 @@ module.exports = function(){
         enableProof: true,
         profileFields: ['id', 'emails', 'name'] //This
     }, function(acessToken, refreshToken, profile, done){
+        var nome = "";
+        nome = profile.name.givenName +  " " + profile.name.familyName;
+        console.log(profile);
 
         Usuario.findOrCreate(
             { "login" : profile.emails[0].value },
             { "email" : profile.emails[0].value },
-            { "nome" : profile.name.givenName + " " + profile.name.familyName },
+            { "nome" : "teste" },
             function(erro, usuario){
                 if(erro){
                     console.log(erro);
