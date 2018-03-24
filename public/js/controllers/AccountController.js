@@ -1,14 +1,14 @@
 // public/js/controller/AccountController.js
 
 angular.module('meanapp1').controller('AccountController',
-    function ($scope, $routeParams, Usuario, $http, $location, $window) {
+    function ($scope, $routeParams, Usuario, getUsuario, $http, $location, $window) {
 
         $scope.mensagem = { texto: '' };
 
         if ($routeParams.usuarioId) {
-            Usuario.get({ id: $routeParams.usuarioId },
-                function (usuario) {
-                    $scope.usuario = usuario;
+            getUsuario.get({ id: $routeParams.usuarioId },
+                function (getUsuario) {
+                    $scope.usuario = getUsuario;
                 },
                 function (erro) {
                     $scope.mensagem = { texto: 'Não foi possível obter o usuario.' };
