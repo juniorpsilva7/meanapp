@@ -10,6 +10,6 @@ module.exports = function(app){
             nome = req.user.nome
             usuarioId = req.user._id;
         }
-        res.render('index', {"usuarioLogado" : login, "usuarioId" : usuarioId});
+        res.render('index', {"usuarioLogado" : nome, "usuarioId" : usuarioId});
     });
 };

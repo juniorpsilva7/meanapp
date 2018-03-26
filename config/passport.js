@@ -38,20 +38,46 @@ module.exports = function(){
     }, function(acessToken, refreshToken, profile, done){
         var nome = "";
         nome = profile.name.givenName +  " " + profile.name.familyName;
-        console.log(profile);
+        console.log(profile._json);
 
-        Usuario.findOrCreate(
-            { "login" : profile.emails[0].value },
-            { "email" : profile.emails[0].value },
-            { "nome" : "teste" },
-            function(erro, usuario){
-                if(erro){
-                    console.log(erro);
-                    return done(erro);
-                }
-                return done(null, usuario);
+        // Usuario.findOrCreate(
+        //     { "login" : profile.emails[0].value },
+        //     { "email" : profile.emails[0].value },
+        //     { "nome" : nome },
+        //     function(erro, usuario){
+        //         if(erro){
+        //             console.log(erro);
+        //             return done(erro);
+        //         }
+        //         return done(null, usuario);
+        //     }
+        // );
+
+        Usuario.findOne({
+            'email': profile.emails[0].value
+        }, function(err, usuario) {
+            if (err) {
+                return done(err);
             }
-        );
+            //No user was found... so create a new user with values from Facebook (all the profile. stuff)
+            if (!usuario) {
+                usuario = new Usuario({
+                    nome: profile._json.first_name + " " + profile._json.last_name,
+                    login: profile.emails[0].value,
+                    email: profile.emails[0].value,
+                    provider: 'facebook',
+                    //now in the future searching on User.findOne({'facebook.id': profile.id } will match because of this next line
+                    facebook: profile._json
+                });
+                usuario.save(function(err) {
+                    if (err) console.log(err);
+                    return done(err, usuario);
+                });
+            } else {
+                //found user. Return
+                return done(err, usuario);
+            }
+        });
 
     }));
 
