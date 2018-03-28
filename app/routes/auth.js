@@ -40,11 +40,11 @@ module.exports = function(app){
     app.route('/auth/newAccount')
         .post(controller.salvaUsuario);
 
-    // app.route('/auth/getUsuario/:id')
-    //     .get(verificaAutenticacaoGetUser, controller.obtemUsuario);
-
     app.route('/auth/getUsuario/:id')
         .get(verificaAutenticacaoGetUser, controller.obtemUsuario);
+
+    app.route('/auth/userExist/:email') //implementar um captcha no front para não estar desprotegido
+        .get(controller.userExist);
 
     app.route('/auth/removeUser/:id')
         .delete(controller.removeUsuario);

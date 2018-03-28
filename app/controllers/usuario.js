@@ -40,7 +40,7 @@ module.exports = function (app) {
         var _id = req.body._id;
         
         var dados = {
-            "login": req.body.nome,
+            // "login": req.body.nome,
             "nome": req.body.nome,
             "email": req.body.email,
             "senha": req.body.senha
@@ -71,6 +71,25 @@ module.exports = function (app) {
         }
     };
 
+    controller.userExist = function (req, res){
+        var email = sanitize(req.params.email);
+        
+        Usuario.findOne({
+            'email': email
+        }, function(err, usuario) {
+            if (err) {
+                res.status(500).json(err);
+            }
+            //No user was found... 
+            if (!usuario) {
+                res.status(201).json("Usuário não existe");
+            } else {
+                //found user. Return
+                res.status(201).json("Usuário existe");
+            }
+        });
+        
+    }
 
     return controller;
 };
