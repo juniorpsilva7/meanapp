@@ -22,36 +22,29 @@ angular.module('meanapp1').controller('AccountController',
 
         $scope.salva = function () {
 
-            // $http({
-            //     method:"get",
-            //     url:'/auth/userExist/' + $scope.usuario.email,
-            // }).success(function(response){
-            //     console.log("success!!");
+            //dá um get se o usuário existe, se sim dá o erro
+            $http({
+                method:"get",
+                url:'/auth/userExist/' + $scope.usuario.email,
+            }).success(function(response){
+                console.log("success!!");
 
-            //     $scope.usuario.$save()
-            //         .then(function () {
-            //             $scope.mensagem = { texto: 'Salvo com Sucesso' };
-            //             //limpa o formulário
-            //             $scope.usuario = new Usuario();
-            //         })
-            //         .catch(function (erro) {
-            //             $scope.mensagem = { texto: 'Não foi possível salvar' };
-            //         });
+                $scope.usuario.$save()
+                    .then(function () {
+                        $scope.mensagem = { texto: 'Salvo com Sucesso' };
+                        $scope.alert = { type: 'alert alert-success'};
+                        //limpa o formulário
+                        $scope.usuario = new Usuario();
+                    })
+                    .catch(function (erro) {
+                        $scope.mensagem = { texto: 'Não foi possível salvar' };
+                        $scope.alert = { type: 'alert alert-danger'};
+                    });
 
-            // }).error(function(response){
-            //     console.log("error!!");
-            //     $scope.mensagem = { texto: 'Errorrr' };
-            // });
-            // TERMINAR
-
-            $scope.usuario.$save()
-            .then(function () {
-                $scope.mensagem = { texto: 'Salvo com Sucesso' };
-                //limpa o formulário
-                $scope.usuario = new Usuario();
-            })
-            .catch(function (erro) {
-                $scope.mensagem = { texto: 'Não foi possível salvar' };
+            }).error(function(response){
+                console.log("error!!");
+                $scope.mensagem = { texto: 'Email de usuário já existente' };
+                $scope.alert = { type: 'alert alert-danger'};
             });
             
         };

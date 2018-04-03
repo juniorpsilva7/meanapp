@@ -82,10 +82,10 @@ module.exports = function (app) {
             }
             //No user was found... 
             if (!usuario) {
-                res.status(201).json("Usuário não existe");
+                res.status(200).end();
             } else {
                 //found user. Return
-                res.status(201).json("Usuário existe");
+                res.status(400).end();
             }
         });
         
