@@ -14,6 +14,7 @@
     "ejs": "^2.5.1",
     "express": "^4.15.2",
     "express-load": "^1.1.16",
+    "express-rate-limit": "^2.11.0",
     "express-session": "^1.7.6",
     "fs": "0.0.1-security",
     "helmet": "^0.4.2",
@@ -26,6 +27,6 @@
     "passport": "^0.2.2",
     "passport-facebook": "^2.1.1",
     "passport-github": "^0.1.5",
-    "passport-local" : "~1.0.0"
+    "passport-local": "~1.0.0"
   }
 }
