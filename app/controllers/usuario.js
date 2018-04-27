@@ -37,7 +37,7 @@ module.exports = function (app) {
     };
 
     controller.salvaUsuario = function (req, res) {
-        var _id = req.body._id;
+        var _id = req.params.id;
         
         var dados = {
             // "login": req.body.nome,
@@ -47,6 +47,10 @@ module.exports = function (app) {
         };
 
         if (_id) {
+            dados = {
+                // "login": req.body.nome,
+                "nome": req.body.nome
+            };
             Usuario.findByIdAndUpdate(_id, dados).exec()
                 .then(function (usuario) {
 

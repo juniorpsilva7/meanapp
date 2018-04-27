@@ -9,6 +9,7 @@ angular.module('meanapp1').controller('AccountController',
             getUsuario.get({ id: $routeParams.usuarioId },
                 function (getUsuario) {
                     $scope.usuario = getUsuario;
+                    console.log("passou...");
                 },
                 function (erro) {
                     $scope.mensagem = { texto: 'Não foi possível obter o usuario.' };
@@ -49,6 +50,16 @@ angular.module('meanapp1').controller('AccountController',
             
         };
 
+        $scope.altera = function (){
+            $http.put('/auth/newAccount/'+$scope.usuario._id, $scope.usuario).success(function(response){
+                $scope.mensagem = { texto: 'Salvo com Sucesso' };
+                $scope.alert = { type: 'alert alert-success'};
+            }).error(function(error){
+                console.log(error);
+                console.log("debugMe!");
+            })
+        };
+
         $scope.login = function(){
 
             console.log("....EMAIL: "+$scope.usuario.email+" SENHA: "+$scope.usuario.password);
@@ -60,7 +71,7 @@ angular.module('meanapp1').controller('AccountController',
             }).success(function(response){
                 $scope.user = response;
                 // $localStorage.userData = $scope.userData; 
-                console.log("success!!" + $scope.user.login);
+                console.log("success!!" + $scope.user.nome);
                 // $location.path("/profile")
                 $location.path("/index");
                 $window.location.reload();

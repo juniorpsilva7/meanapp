@@ -38,7 +38,10 @@ module.exports = function(app){
     });
 
     app.route('/auth/newAccount')
-        .post(controller.salvaUsuario);
+        .post(controller.salvaUsuario); // route aberta, ver um maneira de bloquear
+    
+    app.route('/auth/newAccount/:id')
+        .put(verificaAutenticacaoGetUser, controller.salvaUsuario); // route para modificação do nome do user
 
     app.route('/auth/getUsuario/:id')
         .get(verificaAutenticacaoGetUser, controller.obtemUsuario);
