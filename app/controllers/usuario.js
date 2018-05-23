@@ -41,8 +41,8 @@ module.exports = function (app) {
         
         var dados = {
             // "login": req.body.nome,
-            "nome": req.body.nome,
             "email": req.body.email,
+            "nome": req.body.nome,
             "senha": req.body.senha
         };
 
