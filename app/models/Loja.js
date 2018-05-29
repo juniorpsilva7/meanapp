@@ -42,7 +42,7 @@ module.exports = function(){
         },
         tipoContaLoja:{
             type: String,
-            //enum: ['B', 'C'], // Loja e Serviços, Veículos, Supermercados, Comidas, Postos de Combustíveis, Internet e TV - definir letras para cada pacote
+            //enum: ['B', 'C'], // Loja e Serviços, Veículos, Supermercados, Comidas, imoveis, Postos de Combustíveis, Internet e TV - definir letras para cada pacote
             //required: true,
             default : 'P'
         },

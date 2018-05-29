@@ -31,6 +31,30 @@ module.exports = function(){
             required: true,
             get: getPreco, 
             set: setPreco
+        },
+        isPromo:{
+            type: Boolean,
+            required: true,
+            default : false
+        },
+        promoPreco: {
+            type: Number,
+            get: getPreco, 
+            set: setPreco
+        },
+        statusProduto: {
+            type: String,
+            enum: ['A', 'I', 'B', 'D'], // A=Ativo, I=Inativo, B=Bloqueado, D=Deletado
+            required: true,
+            default : 'A'
+        },
+        //publicado: { // ver se vai precisar pois já tem o status Ativo e Inativo
+
+        //},
+        cidadesDispo: {
+            type: [String],
+            required: true,
+            default: ['Cidade Teste']
         }
     });
 
