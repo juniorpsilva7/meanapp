@@ -1,3 +1,3 @@
 cd c:\Mongo\bin
-mongod --dbpath c:\node\meanapp1\data\
+mongod --dbpath c:\node\meanapp\data\
 pause

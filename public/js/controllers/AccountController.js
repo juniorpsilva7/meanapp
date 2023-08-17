@@ -73,9 +73,12 @@ angular.module('meanapp1').controller('AccountController',
                 // $localStorage.userData = $scope.userData; 
                 console.log("success!!" + $scope.user.nome);
                 // $location.path("/profile")
-                $location.path("/index");
+                
                 $window.location.reload();
-            }).error(function(response){
+                // $location.path("/lojas");
+                
+            }).then($location.path("/lojas"))
+            .error(function(response){
                 console.log("error!!");
                 $location.path("/auth");
                 $scope.mensagem = { texto: 'Falha no login, usuário ou senha inválidos' };

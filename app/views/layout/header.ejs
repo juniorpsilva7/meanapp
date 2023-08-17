@@ -19,6 +19,16 @@
         <a class="nav-link" href="#/produtos">Meus Produtos</a>
       </li>
     </ul>
+
+    <%if (usuarioLogado) { %>
+      <div class="text-right mr-5 p-2">
+        <span class="badge badge-success">Logado como: <span id="usuario-logado"><%=usuarioLogado %></span>
+        </span>
+        <a href="/logout" class="badge badge-light">Sair</a>
+      </div>
+      <br/>
+    <% } %>
+
     <form class="form-inline my-2 my-lg-0">
       <div class="input-group">
         <input class="form-control border-right-0" type="text" placeholder="Buscar">
@@ -38,7 +48,7 @@
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Entrar
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
           <%if (!usuarioLogado) { %>
             <a class="dropdown-item" href="#/auth">Login</a>
             <a class="dropdown-item" href="#/newAccount">Cadastrar</a>

@@ -34,7 +34,7 @@ module.exports = function(app){
 
     app.get('/logout', function(req, res){
         req.logOut(); // exposto pelo passport
-        res.redirect('/');
+        res.redirect('/#/auth');
     });
 
     app.route('/auth/newAccount')

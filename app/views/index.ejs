@@ -18,6 +18,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background-color: rgb(232, 245, 250);
 }
 
 /* Custom page CSS
@@ -39,13 +40,14 @@ body > .container {
     <main role="main" class="container">
         <div class="mt-3">
 
-    <%if (usuarioLogado) { %>
+    <!-- <%if (usuarioLogado) { %>
       <div class="text-right">
-        <p>Logado como: <span id="usuario-logado"><%=usuarioLogado %></span>
-          <a href="/logout">Sair</a>
-        </p>
+        <span class="badge badge-pill badge-success">Logado como: <span id="usuario-logado"><%=usuarioLogado %></span>
+        </span>
+        <a href="/logout" class="badge badge-pill badge-light text-primary">Sair</a>
       </div>
-    <% } %>
+      <br/>
+    <% } %> -->
 
     <div ng-view></div>
     </main>

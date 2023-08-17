@@ -1,28 +1,33 @@
 <!-- public/partials/lojas.html -->
-<div class="jumbotron">
+<div style="background:white" class="jumbotron">
     <h1 class="text-center">Bem-vindo ao MeanApp1</h1>
+    <h4 class="text-center">Cadastre suas Lojas</h4>    
 </div>
 <p ng-show="mensagem.texto">{{mensagem.texto}}</p>
 <a ng-href="#/loja" class="btn btn-primary">Novo</a>
 <input ng-model="filtro" type="search" placeholder="Parte do nome">
-<p ng-show="lojas.length">Lojas cadastrados: {{lojas.length}}</p>
+<p ng-show="lojas.length">Lojas cadastradas: {{lojas.length}}</p>
 <p class="text-info" ng-hide="lojas.length">Não há lojas cadastradas</p>
 <div class="table-responsive">
     <table class="table table-hover">
-        <tr>
-            <th></th>
-            <th>NOME</th>
-            <th>E-MAIL</th>
-            <th class="text-center">Ação</th>
-        </tr>
-        <tr ng-repeat="loja in lojas | filter: filtro">
-            <td><img src="{{loja.foto}}" alt="" border=3 height=100 width=100></td>
-            <td><a ng-href="#/loja/{{loja._id}}">{{loja.nome}}</a></td>
-            <td>{{loja.email}}</td>
-            <td class="text-center">
-                 <button ng-click="remove(loja)" class="btn btn-warning">Remover</button> 
-                <a href="#/produto/loja/{{loja._id}}" class="btn btn-primary">Add Produto</a>
-            </td>
-        </tr>
+        <thead class="bg-info">
+            <tr>
+                <th>FOTO</th>
+                <th>NOME</th>
+                <th>E-MAIL</th>
+                <th class="text-center">AÇÃO</th>
+            </tr>            
+        </thead>
+        <tbody>
+            <tr ng-repeat="loja in lojas | filter: filtro">
+                <td><img src="{{loja.foto}}" alt="" border=3 height=100 width=100></td>
+                <td><a ng-href="#/loja/{{loja._id}}">{{loja.nome}}</a></td>
+                <td>{{loja.email}}</td>
+                <td class="text-center">
+                     <button ng-click="remove(loja)" class="btn btn-warning">Remover</button> 
+                    <a href="#/produto/loja/{{loja._id}}" class="btn btn-primary">Add Produto</a>
+                </td>
+            </tr>
+        </tbody>
     </table>
 </div>

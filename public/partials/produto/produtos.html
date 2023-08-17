@@ -1,5 +1,5 @@
 <!-- public/partials/produtos.html -->
-<div class="page-header">
+<div style="background:white" class="jumbotron">
     <h1 class="text-center">Cadastro de Produtos</h1>
 </div>
 <p ng-show="mensagem.texto">{{mensagem.texto}}</p>
@@ -15,14 +15,17 @@
 </div> 
 <div class="table-responsive">
     <table class="table table-hover">
-        <tr>
-            <th>NOME</th>
-            <th>DESCRICAO</th>
-            <th>LOJA</th>
-            <th>FOTO</th>
-            <th>PREÇO</th>
-            <th class="text-center">Ação</th>
-        </tr>
+        <thead class="bg-info">
+            <tr>
+                <th>NOME</th>
+                <th>DESCRICAO</th>
+                <th>LOJA</th>
+                <th>FOTO</th>
+                <th>PREÇO</th>
+                <th class="text-center">AÇÃO</th>
+            </tr>
+        </thead>
+        <tbody>
         <tr ng-repeat="produto in produtos | filter: filtro | filter: filtro2">
             <td>
                 <a ng-href="#/produto/{{produto._id}}">{{produto.nome}}</a>
@@ -35,5 +38,7 @@
                 <button ng-click="remove(produto)" class="btn btn-warning">Remover</button>
             </td>
         </tr>
+    </tbody>
     </table>
+    
 </div>
